@@ -3,22 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ALEXIM | Aryan Logistics Export Import</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --navy: #06111f;
-    --navy2: #0b1b2d;
-    --gold: #c9a45c;
-    --lightgold: #f0d79c;
-    --white: #f5f2eb;
-    --muted: #9ba8b5;
-}
 
 * {
     margin: 0;
@@ -26,1331 +16,258 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    background: var(--navy);
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.gold {
-    color: var(--gold);
-}
-
-.container {
-    width: min(1180px, 90%);
-    margin: auto;
-}
-
-/* NAVIGATION */
-
-nav {
-    position: fixed;
-    top: 0;
+    height: 100vh;
     width: 100%;
-    z-index: 100;
-    padding: 22px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(6,17,31,.78);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(201,164,92,.15);
-}
-
-.logo {
-    font-family: 'Cinzel', serif;
-    font-size: 25px;
-    letter-spacing: 5px;
-    color: var(--gold);
-}
-
-.logo span {
-    display: block;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 8px;
-    letter-spacing: 3px;
-    color: var(--white);
-    margin-top: 3px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-}
-
-.nav-links a {
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #c4cbd2;
-    transition: .3s;
-}
-
-.nav-links a:hover {
-    color: var(--gold);
-}
-
-.nav-contact {
-    border: 1px solid var(--gold);
-    padding: 12px 19px;
-    color: var(--gold) !important;
-}
-
-.menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--gold);
-    font-size: 27px;
-    cursor: pointer;
-}
-
-/* HERO */
-
-.hero {
-    min-height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
     overflow: hidden;
-    padding-top: 90px;
+    font-family: 'Montserrat', sans-serif;
+    background: #06111e;
+    color: white;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 650px;
-    height: 650px;
-    right: 3%;
-    top: 10%;
-    background: radial-gradient(circle, rgba(25,91,126,.18), transparent 68%);
-    pointer-events: none;
-}
+/* CINEMATIC BACKGROUND */
 
-.hero-content {
-    position: relative;
-    z-index: 5;
-    width: 48%;
-    padding-left: 9%;
-}
+.background {
+    position: fixed;
+    inset: 0;
 
-.eyebrow {
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-
-.hero h1 {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(48px, 7vw, 92px);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: 3px;
-}
-
-.hero h1 span {
-    color: var(--gold);
-}
-
-.hero-description {
-    color: var(--muted);
-    max-width: 440px;
-    line-height: 1.9;
-    font-size: 14px;
-    margin: 27px 0 35px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 16px 26px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: .3s;
-    display: inline-block;
-}
-
-.btn-gold {
-    background: var(--gold);
-    color: var(--navy);
-    border: 1px solid var(--gold);
-}
-
-.btn-gold:hover {
-    background: var(--lightgold);
-    transform: translateY(-3px);
-}
-
-.btn-outline {
-    border: 1px solid rgba(201,164,92,.6);
-    color: var(--gold);
-}
-
-.btn-outline:hover {
-    background: rgba(201,164,92,.1);
-}
-
-#globe-container {
-    position: absolute;
-    width: 65%;
-    height: 90%;
-    right: -5%;
-    top: 7%;
-    z-index: 2;
-}
-
-.hero-bottom {
-    position: absolute;
-    bottom: 35px;
-    left: 9%;
-    display: flex;
-    gap: 50px;
-    z-index: 5;
-}
-
-.hero-stat strong {
-    display: block;
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-size: 21px;
-    font-weight: 400;
-}
-
-.hero-stat span {
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-/* GENERAL SECTIONS */
-
-section {
-    padding: 115px 0;
-    position: relative;
-}
-
-.section-label {
-    color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-}
-
-.section-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(30px, 4vw, 49px);
-    font-weight: 400;
-    line-height: 1.25;
-}
-
-.section-description {
-    color: var(--muted);
-    line-height: 1.9;
-    font-size: 14px;
-    margin-top: 22px;
-    max-width: 650px;
-}
-
-/* ABOUT */
-
-.about {
-    background: #091827;
-    border-top: 1px solid rgba(201,164,92,.12);
-    border-bottom: 1px solid rgba(201,164,92,.12);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 90px;
-    align-items: center;
-}
-
-.about-visual {
-    min-height: 390px;
-    border: 1px solid rgba(201,164,92,.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     background:
-        radial-gradient(circle, rgba(201,164,92,.1), transparent 65%),
-        linear-gradient(135deg, #10243a, #06111f);
-    overflow: hidden;
+        linear-gradient(
+            90deg,
+            rgba(3,10,20,0.92),
+            rgba(3,10,20,0.55),
+            rgba(3,10,20,0.75)
+        ),
+        url("https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=85&w=2400");
+
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.08);
+    animation: cinematicZoom 20s ease-in-out infinite alternate;
+    z-index: -2;
 }
 
-.about-visual::before,
-.about-visual::after {
-    content: "";
+@keyframes cinematicZoom {
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1.18);
+    }
+}
+
+/* DARK OVERLAY */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(2,8,17,.35),
+        rgba(2,8,17,.35),
+        rgba(2,8,17,.85)
+    );
+    z-index: -1;
+}
+
+/* GOLD LIGHT EFFECT */
+
+.gold-light {
     position: absolute;
-    width: 280px;
-    height: 280px;
-    border: 1px solid rgba(201,164,92,.25);
+    width: 450px;
+    height: 450px;
+    background: rgba(201,164,92,.10);
+    filter: blur(130px);
     border-radius: 50%;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.about-visual::after {
-    width: 220px;
-    height: 220px;
-}
+/* MAIN CONTENT */
 
-.about-emblem {
-    font-family: 'Cinzel', serif;
-    font-size: 65px;
-    letter-spacing: 12px;
-    color: var(--gold);
-    z-index: 2;
-}
-
-.about-caption {
-    position: absolute;
-    bottom: 24px;
-    font-size: 9px;
-    letter-spacing: 4px;
-    color: var(--muted);
-}
-
-/* SERVICES */
-
-.services {
-    background: var(--navy);
-}
-
-.center-heading {
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-bottom: 60px;
+    padding: 20px;
+    animation: fadeIn 2s ease;
 }
 
-.center-heading .section-description {
-    margin-left: auto;
-    margin-right: auto;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+/* TOP LABEL */
 
-.service-card {
-    min-height: 270px;
-    padding: 35px 29px;
-    border: 1px solid rgba(201,164,92,.18);
-    background: linear-gradient(145deg, #102238, #091522);
-    transition: .4s;
-}
-
-.service-card:hover {
-    transform: translateY(-9px);
-    border-color: var(--gold);
-    background: linear-gradient(145deg, #172d45, #0a1929);
-}
-
-.service-number {
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-size: 24px;
-    margin-bottom: 28px;
-}
-
-.service-card h3 {
-    font-family: 'Cinzel', serif;
-    font-weight: 400;
-    font-size: 19px;
-    margin-bottom: 15px;
-}
-
-.service-card p {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.9;
-}
-
-/* FOUNDERS */
-
-.founders {
-    background: #091827;
-}
-
-.founder-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-top: 55px;
-}
-
-.founder-card {
-    padding: 40px;
-    background: #0d2033;
-    border: 1px solid rgba(201,164,92,.2);
-    position: relative;
-    overflow: hidden;
-    transition: .3s;
-}
-
-.founder-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-5px);
-}
-
-.founder-card::after {
-    content: "A";
-    position: absolute;
-    right: 15px;
-    bottom: -90px;
-    font-family: 'Cinzel', serif;
-    font-size: 260px;
-    color: rgba(201,164,92,.035);
-    pointer-events: none;
-}
-
-.founder-role {
-    color: var(--gold);
+.top-label {
     font-size: 10px;
-    letter-spacing: 3px;
+    letter-spacing: 7px;
+    color: #d4b576;
+    margin-bottom: 35px;
     text-transform: uppercase;
 }
 
-.founder-card h3 {
+/* BRAND NAME */
+
+.brand {
     font-family: 'Cinzel', serif;
-    font-size: 29px;
-    font-weight: 400;
-    margin: 17px 0;
+    font-size: clamp(65px, 12vw, 145px);
+    font-weight: 500;
+    letter-spacing: 18px;
+    color: #e5c78a;
+
+    text-shadow:
+        0 0 20px rgba(201,164,92,.2),
+        0 0 60px rgba(201,164,92,.15);
 }
 
-.founder-card p {
-    position: relative;
-    z-index: 2;
-    color: var(--muted);
-    line-height: 1.9;
-    font-size: 13px;
-}
+/* GOLD LINE */
 
-.founder-highlight {
-    display: inline-block;
-    margin-top: 25px;
-    padding-top: 17px;
-    border-top: 1px solid rgba(201,164,92,.3);
-    color: var(--gold);
-    font-size: 11px;
-    letter-spacing: 1px;
-}
-
-/* LEGACY */
-
-.legacy {
-    text-align: center;
-    background:
-        radial-gradient(ellipse at center, rgba(28,72,100,.22), transparent 70%),
-        var(--navy);
-}
-
-.legacy .section-title {
-    max-width: 800px;
-    margin: auto;
-}
-
-.legacy .section-description {
-    margin: 25px auto 0;
-}
-
-.legacy-line {
-    width: 70px;
+.line {
+    width: 100px;
     height: 1px;
-    background: var(--gold);
-    margin: 35px auto;
+    background: #c9a45c;
+    margin: 30px auto;
+    box-shadow: 0 0 15px #c9a45c;
 }
 
-/* CONTACT */
+/* COMPANY NAME */
 
-.contact {
-    background: #091827;
-    border-top: 1px solid rgba(201,164,92,.15);
+.company-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(13px, 2vw, 21px);
+    letter-spacing: 5px;
+    color: #f3eee4;
+    font-weight: 400;
 }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
-    align-items: center;
+/* TAGLINE */
+
+.tagline {
+    margin-top: 25px;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #c5c0b5;
+    text-transform: uppercase;
 }
 
-.contact-box {
-    border: 1px solid rgba(201,164,92,.25);
-    padding: 35px;
-    background: #0d2033;
+/* BUTTON */
+
+.enter-btn {
+    margin-top: 65px;
+    padding: 19px 48px;
+
+    border: 1px solid #c9a45c;
+    background: rgba(201,164,92,.08);
+
+    color: #e5c78a;
+    text-decoration: none;
+
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    transition: all .5s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.contact-box p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 2;
-    margin-bottom: 20px;
-}
-
-.contact-box a {
-    color: var(--gold);
-    font-size: 13px;
+.enter-btn:hover {
+    background: #c9a45c;
+    color: #06111e;
+    box-shadow: 0 0 35px rgba(201,164,92,.35);
+    transform: translateY(-4px);
 }
 
 /* FOOTER */
 
-footer {
-    padding: 35px 5%;
-    border-top: 1px solid rgba(201,164,92,.15);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
+.footer {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,.55);
 }
 
-footer p {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 1px;
-}
+/* MOBILE */
 
-/* REVEAL */
+@media(max-width: 600px) {
 
-.reveal {
-    opacity: 0;
-    transform: translateY(35px);
-    transition: opacity .8s ease, transform .8s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* RESPONSIVE */
-
-@media(max-width: 850px) {
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 75px;
-        left: 0;
-        width: 100%;
-        padding: 25px;
-        background: #081626;
-        flex-direction: column;
+    .brand {
+        letter-spacing: 9px;
     }
 
-    .nav-links.active {
-        display: flex;
+    .company-name {
+        letter-spacing: 2px;
+        line-height: 2;
     }
 
-    .menu-btn {
-        display: block;
+    .top-label {
+        letter-spacing: 4px;
     }
 
-    .hero {
-        min-height: 900px;
-        align-items: flex-start;
+    .tagline {
+        letter-spacing: 2px;
     }
 
-    .hero-content {
-        width: 90%;
-        padding: 100px 0 0;
-        margin: auto;
-    }
-
-    #globe-container {
-        width: 100%;
-        height: 50%;
-        top: 43%;
-        right: 0;
-    }
-
-    .hero-bottom {
-        bottom: 25px;
-        left: 5%;
-        gap: 25px;
-    }
-
-    .about-grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 45px;
-    }
-
-    .service-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .founder-grid {
-        grid-template-columns: 1fr;
+    .enter-btn {
+        padding: 17px 35px;
     }
 }
 
-@media(max-width: 520px) {
-    .service-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 48px;
-    }
-
-    .hero-bottom {
-        gap: 16px;
-    }
-
-    .hero-stat strong {
-        font-size: 16px;
-    }
-
-    .hero-stat span {
-        font-size: 8px;
-    }
-
-    .founder-card {
-        padding: 28px;
-    }
-
-    footer {
-        flex-direction: column;
-        text-align: center;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<div class="background"></div>
+<div class="overlay"></div>
+<div class="gold-light"></div>
 
-<nav>
-    <a href="#home" class="logo">
+<main class="main">
+
+    <div class="top-label">
+        A New Vision of Global Trade
+    </div>
+
+    <h1 class="brand">
         ALEXIM
-        <span>ARYAN LOGISTICS EXPORT IMPORT</span>
+    </h1>
+
+    <div class="line"></div>
+
+    <h2 class="company-name">
+        ARYAN LOGISTICS EXPORT IMPORT
+    </h2>
+
+    <p class="tagline">
+        Two Generations. One Vision
+    </p>
+
+    <a href="about.html" class="enter-btn">
+        CLICK HERE &nbsp; →
     </a>
 
-    <div class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#founders">Founders</a>
-        <a href="#contact" class="nav-contact">Contact</a>
-    </div>
-
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-</nav>
-
-
-<!-- HERO -->
-
-<header class="hero" id="home">
-
-    <div class="hero-content reveal">
-        <div class="eyebrow">Beyond Borders. Beyond Business.</div>
-
-        <h1>
-            GLOBAL<br>
-            TRADE.<br>
-            <span>REDEFINED.</span>
-        </h1>
-
-        <p class="hero-description">
-            Connecting businesses, markets and opportunities
-            across borders. Built on experience, driven by
-            ambition, and focused on the future of international trade.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#about" class="btn btn-gold">Discover ALEXIM</a>
-            <a href="#contact" class="btn btn-outline">Get in Touch</a>
-        </div>
-    </div>
-
-    <div id="globe-container"></div>
-
-    <div class="hero-bottom">
-        <div class="hero-stat">
-            <strong>25+ Years</strong>
-            <span>Industry Experience</span>
-        </div>
-
-        <div class="hero-stat">
-            <strong>Global</strong>
-            <span>Trade Vision</span>
-        </div>
-
-        <div class="hero-stat">
-            <strong>One Vision</strong>
-            <span>Future Focused</span>
-        </div>
-    </div>
-
-</header>
-
-
-<!-- ABOUT -->
-
-<section class="about" id="about">
-    <div class="container about-grid">
-
-        <div class="about-visual reveal">
-            <div class="about-emblem">A</div>
-            <div class="about-caption">ARYAN LOGISTICS EXPORT IMPORT</div>
-        </div>
-
-        <div class="reveal">
-            <div class="section-label">Who We Are</div>
-
-            <h2 class="section-title">
-                A Vision Built<br>
-                <span class="gold">Beyond Borders.</span>
-            </h2>
-
-            <p class="section-description">
-                ALEXIM stands for Aryan Logistics Export Import.
-                It represents a vision to connect businesses with
-                international opportunities through the world of
-                import and export.
-            </p>
-
-            <p class="section-description">
-                Combining practical industry experience with a
-                forward-looking approach, our ambition is to make
-                global trade more accessible, understandable and
-                opportunity-driven.
-            </p>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- SERVICES -->
-
-<section class="services" id="services">
-    <div class="container">
-
-        <div class="center-heading reveal">
-            <div class="section-label">What We Do</div>
-
-            <h2 class="section-title">
-                The World of <span class="gold">Global Trade</span>
-            </h2>
-
-            <p class="section-description">
-                Explore the key areas that shape international commerce.
-            </p>
-        </div>
-
-        <div class="service-grid">
-
-            <div class="service-card reveal">
-                <div class="service-number">01</div>
-                <h3>Import Solutions</h3>
-                <p>
-                    Supporting businesses exploring international
-                    sourcing and opportunities to bring products
-                    across borders.
-                </p>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-number">02</div>
-                <h3>Export Opportunities</h3>
-                <p>
-                    Exploring international markets and helping
-                    businesses understand the possibilities of
-                    taking products beyond borders.
-                </p>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-number">03</div>
-                <h3>Global Trade</h3>
-                <p>
-                    Understanding the connections between buyers,
-                    sellers, suppliers and international markets.
-                </p>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-number">04</div>
-                <h3>Logistics</h3>
-                <p>
-                    Understanding the movement of goods and the
-                    processes involved in international supply chains.
-                </p>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-number">05</div>
-                <h3>Trade Knowledge</h3>
-                <p>
-                    Building awareness around the processes,
-                    documentation and fundamentals of EXIM.
-                </p>
-            </div>
-
-            <div class="service-card reveal">
-                <div class="service-number">06</div>
-                <h3>Business Connections</h3>
-                <p>
-                    A vision focused on creating meaningful
-                    connections between businesses and global markets.
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- FOUNDERS -->
-
-<section class="founders" id="founders">
-    <div class="container">
-
-        <div class="center-heading reveal">
-            <div class="section-label">The People Behind ALEXIM</div>
-
-            <h2 class="section-title">
-                Experience Meets <span class="gold">Ambition.</span>
-            </h2>
-
-            <p class="section-description">
-                Two generations. Different strengths. One shared vision.
-            </p>
-        </div>
-
-        <div class="founder-grid">
-
-            <div class="founder-card reveal">
-                <div class="founder-role">Founder</div>
-
-                <h3>Aryan Nanda</h3>
-
-                <p>
-                    A young entrepreneur, digital creator and the
-                    founder of NANDABOI, Aryan brings a modern,
-                    ambitious and forward-looking perspective to ALEXIM.
-
-                    With a combined community of over 100,000 across
-                    social platforms, he aims to build a bridge between
-                    the next generation and the world of international
-                    business.
-                </p>
-
-                <div class="founder-highlight">
-                    DIGITAL CREATOR · ENTREPRENEUR · VISIONARY
-                </div>
-            </div>
-
-
-            <div class="founder-card reveal">
-                <div class="founder-role">Founder</div>
-
-                <h3>Suresh Nanda</h3>
-
-                <p>
-                    With over 25 years of real-world experience in the
-                    import-export industry, Suresh Nanda brings practical
-                    knowledge and industry understanding to the vision
-                    behind ALEXIM.
-
-                    As the founder of Aryan Logistics, his experience
-                    forms an important foundation for the next chapter.
-                </p>
-
-                <div class="founder-highlight">
-                    25+ YEARS · EXIM EXPERIENCE · INDUSTRY KNOWLEDGE
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- LEGACY -->
-
-<section class="legacy">
-    <div class="container reveal">
-
-        <div class="section-label">Our Philosophy</div>
-
-        <h2 class="section-title">
-            Borders Separate Countries.<br>
-            <span class="gold">Trade Connects the World.</span>
-        </h2>
-
-        <div class="legacy-line"></div>
-
-        <p class="section-description">
-            Built on experience. Inspired by ambition.
-            Focused on creating opportunities beyond borders.
-        </p>
-
-    </div>
-</section>
-
-
-<!-- CONTACT -->
-
-<section class="contact" id="contact">
-    <div class="container contact-grid">
-
-        <div class="reveal">
-            <div class="section-label">Let's Connect</div>
-
-            <h2 class="section-title">
-                Let's Build<br>
-                <span class="gold">Global Connections.</span>
-            </h2>
-
-            <p class="section-description">
-                Have a business enquiry or want to explore
-                international trade opportunities?
-                Connect with ALEXIM.
-            </p>
-        </div>
-
-        <div class="contact-box reveal">
-            <h3 style="font-family:Cinzel;color:#c9a45c;font-weight:400;font-size:25px;margin-bottom:18px;">
-                ALEXIM
-            </h3>
-
-            <p>
-                Aryan Logistics Export Import<br>
-                Connecting ambition with global opportunity.
-            </p>
-
-            <!-- Replace these details with your real contact information -->
-
-            <p>
-                Email: <a href="mailto:YOUR-EMAIL@example.com">
-                    YOUR-EMAIL@example.com
-                </a>
-            </p>
-
-            <p>
-                Phone: <a href="tel:+910000000000">
-                    +91 XXXXX XXXXX
-                </a>
-            </p>
-
-            <a href="#home" class="btn btn-gold">Back to Top</a>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- FOOTER -->
-
-<footer>
-    <a href="#home" class="logo">
-        ALEXIM
-        <span>ARYAN LOGISTICS EXPORT IMPORT</span>
-    </a>
-
-    <p>© 2026 ALEXIM. ALL RIGHTS RESERVED.</p>
-
-    <p>BEYOND BORDERS. BEYOND BUSINESS.</p>
-</footer>
-
-
-<script>
-
-/* MOBILE MENU */
-
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-}
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("navLinks").classList.remove("active");
-    });
-});
-
-
-/* SCROLL REVEAL */
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        }
-    });
-}, { threshold: 0.12 });
-
-document.querySelectorAll(".reveal").forEach(element => {
-    observer.observe(element);
-});
-
-
-/* ACTUAL THREE.JS 3D GLOBE */
-
-const container = document.getElementById("globe-container");
-
-if (window.THREE && container) {
-
-    const scene = new THREE.Scene();
-
-    const camera = new THREE.PerspectiveCamera(
-        45,
-        container.clientWidth / container.clientHeight,
-        0.1,
-        1000
-    );
-
-    camera.position.z = 5.5;
-
-    const renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true
-    });
-
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(container.clientWidth, container.clientHeight);
-
-    container.appendChild(renderer.domElement);
-
-
-    /* LIGHTING */
-
-    const ambientLight = new THREE.AmbientLight(0x7899bb, 0.8);
-    scene.add(ambientLight);
-
-    const mainLight = new THREE.PointLight(0xffd99a, 2.2);
-    mainLight.position.set(4, 3, 5);
-    scene.add(mainLight);
-
-    const blueLight = new THREE.PointLight(0x247db5, 1.5);
-    blueLight.position.set(-4, -2, 3);
-    scene.add(blueLight);
-
-
-    /* GLOBE */
-
-    const globeGroup = new THREE.Group();
-    scene.add(globeGroup);
-
-    const geometry = new THREE.SphereGeometry(1.65, 96, 96);
-
-    const material = new THREE.MeshPhongMaterial({
-        color: 0x1c5375,
-        shininess: 28,
-        specular: 0x557f99,
-        transparent: false
-    });
-
-    const globe = new THREE.Mesh(geometry, material);
-    globeGroup.add(globe);
-
-
-    /* GOLDEN GLOBE GRID */
-
-    const gridMaterial = new THREE.MeshBasicMaterial({
-        color: 0xc9a45c,
-        wireframe: true,
-        transparent: true,
-        opacity: 0.17
-    });
-
-    const grid = new THREE.Mesh(
-        new THREE.SphereGeometry(1.665, 32, 24),
-        gridMaterial
-    );
-
-    globeGroup.add(grid);
-
-
-    /* CONTINENT-INSPIRED SURFACE DETAILS */
-
-    const landMaterial = new THREE.MeshPhongMaterial({
-        color: 0x6b9b9a,
-        shininess: 12,
-        specular: 0x284e65
-    });
-
-    function addLandShape(points) {
-        const shape = new THREE.Shape();
-
-        points.forEach((p, i) => {
-            if (i === 0) shape.moveTo(p[0], p[1]);
-            else shape.lineTo(p[0], p[1]);
-        });
-
-        shape.closePath();
-
-        const landGeometry = new THREE.ShapeGeometry(shape, 12);
-
-        const land = new THREE.Mesh(landGeometry, landMaterial);
-        land.position.z = 1.655;
-        globeGroup.add(land);
-    }
-
-    // Stylised land silhouettes on the globe's front.
-
-    addLandShape([
-        [-0.25,1.25],[-0.65,1.15],[-0.85,.85],
-        [-.72,.55],[-.52,.40],[-.40,.05],
-        [-.18,-.05],[-.15,-.48],[-.35,-.85],
-        [-.18,-1.22],[.05,-1.0],[.12,-.55],
-        [.25,-.25],[.10,.1],[.15,.55],[.02,.9]
-    ]);
-
-    addLandShape([
-        [.30,1.25],[.62,1.15],[.85,.9],
-        [.68,.65],[.92,.4],[.72,.18],
-        [.48,.35],[.30,.18],[.18,.55],
-        [.28,.85]
-    ]);
-
-    addLandShape([
-        [.55,-.12],[.95,-.05],[1.15,-.32],
-        [.92,-.65],[.65,-.78],[.42,-.48]
-    ]);
-
-
-    /* ATMOSPHERE */
-
-    const atmosphere = new THREE.Mesh(
-        new THREE.SphereGeometry(1.75, 64, 64),
-        new THREE.MeshBasicMaterial({
-            color: 0x4aa5d0,
-            transparent: true,
-            opacity: 0.07,
-            side: THREE.BackSide
-        })
-    );
-
-    globeGroup.add(atmosphere);
-
-
-    /* TRADE ROUTES */
-
-    function createRoute(start, end, height) {
-
-        const curve = new THREE.QuadraticBezierCurve3(
-            new THREE.Vector3(start[0], start[1], start[2]),
-            new THREE.Vector3(0, height, 1.5),
-            new THREE.Vector3(end[0], end[1], end[2])
-        );
-
-        const points = curve.getPoints(80);
-
-        const routeGeometry = new THREE.BufferGeometry().setFromPoints(points);
-
-        const routeMaterial = new THREE.LineBasicMaterial({
-            color: 0xe1b96d,
-            transparent: true,
-            opacity: 0.65
-        });
-
-        const route = new THREE.Line(routeGeometry, routeMaterial);
-        globeGroup.add(route);
-
-        return curve;
-    }
-
-    const routes = [
-        createRoute([-1.0,.65,1.15], [.95,.35,1.2], 1.65),
-        createRoute([-.75,-.55,1.35], [.65,-.8,1.25], .9),
-        createRoute([.05,1.1,1.2], [.85,.1,1.3], 1.7)
-    ];
-
-
-    /* GLOWING TRADE POINTS */
-
-    const pointGeometry = new THREE.SphereGeometry(.045, 16, 16);
-
-    const pointMaterial = new THREE.MeshBasicMaterial({
-        color: 0xffd98a
-    });
-
-    const tradePoints = [];
-
-    routes.forEach(curve => {
-        const point = new THREE.Mesh(pointGeometry, pointMaterial);
-        globeGroup.add(point);
-
-        tradePoints.push({
-            mesh: point,
-            curve: curve,
-            progress: Math.random()
-        });
-    });
-
-
-    /* FLOATING 3D SHIPPING CONTAINERS */
-
-    const containerGroup = new THREE.Group();
-    scene.add(containerGroup);
-
-    function makeContainer(x, y, z, color, rotation) {
-
-        const box = new THREE.Mesh(
-            new THREE.BoxGeometry(.45, .22, .25),
-            new THREE.MeshPhongMaterial({
-                color: color,
-                shininess: 45,
-                specular: 0x777777
-            })
-        );
-
-        box.position.set(x, y, z);
-        box.rotation.y = rotation;
-
-        containerGroup.add(box);
-
-        // Container ridges
-
-        for (let i = 0; i < 7; i++) {
-
-            const ridge = new THREE.Mesh(
-                new THREE.BoxGeometry(.012, .225, .26),
-                new THREE.MeshBasicMaterial({
-                    color: 0xd7bd83,
-                    transparent: true,
-                    opacity: .55
-                })
-            );
-
-            ridge.position.set(
-                x - .20 + i * .065,
-                y,
-                z + .13
-            );
-
-            ridge.rotation.y = rotation;
-            containerGroup.add(ridge);
-        }
-    }
-
-    makeContainer(-2.0, -1.0, .1, 0x173f60, -.3);
-    makeContainer(2.0, 1.2, -.2, 0x8c6c38, .4);
-    makeContainer(1.9, -1.2, -.5, 0x173f60, -.4);
-
-
-    /* PARTICLES */
-
-    const particleGeometry = new THREE.BufferGeometry();
-    const particlePositions = [];
-
-    for (let i = 0; i < 450; i++) {
-
-        particlePositions.push(
-            (Math.random() - .5) * 12,
-            (Math.random() - .5) * 9,
-            (Math.random() - .5) * 5
-        );
-    }
-
-    particleGeometry.setAttribute(
-        "position",
-        new THREE.Float32BufferAttribute(particlePositions, 3)
-    );
-
-    const particles = new THREE.Points(
-        particleGeometry,
-        new THREE.PointsMaterial({
-            color: 0xc9a45c,
-            size: .012,
-            transparent: true,
-            opacity: .7
-        })
-    );
-
-    scene.add(particles);
-
-
-    /* ANIMATION */
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    window.addEventListener("mousemove", (event) => {
-        mouseX = (event.clientX / window.innerWidth - .5) * .35;
-        mouseY = (event.clientY / window.innerHeight - .5) * .25;
-    });
-
-    let clock = new THREE.Clock();
-
-    function animate() {
-
-        requestAnimationFrame(animate);
-
-        const elapsed = clock.getElapsedTime();
-
-        globeGroup.rotation.y += .0018;
-
-        globeGroup.rotation.x +=
-            (mouseY - globeGroup.rotation.x) * .012;
-
-        globeGroup.rotation.y +=
-            (mouseX - globeGroup.rotation.y) * .008;
-
-        grid.rotation.y = 0;
-
-        tradePoints.forEach(point => {
-
-            point.progress += .0018;
-
-            if (point.progress > 1) point.progress = 0;
-
-            const position = point.curve.getPoint(point.progress);
-
-            point.mesh.position.copy(position);
-        });
-
-        containerGroup.rotation.y = Math.sin(elapsed * .3) * .08;
-        containerGroup.position.y = Math.sin(elapsed * .5) * .04;
-
-        particles.rotation.y = elapsed * .008;
-
-        renderer.render(scene, camera);
-    }
-
-    animate();
-
-
-    /* RESPONSIVE 3D RESIZING */
-
-    window.addEventListener("resize", () => {
-
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-
-        renderer.setSize(width, height);
-    });
-
-}
-
-</script>
+</main>
+
+<div class="footer">
+    ESTABLISHED ON EXPERIENCE · BUILT FOR THE FUTURE
+</div>
 
 </body>
 </html>

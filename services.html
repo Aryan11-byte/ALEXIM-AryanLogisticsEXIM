@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Services | Aryan Logistics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --navy: #071321;
+    --navy2: #10243a;
+    --gold: #c9a45c;
+    --lightgold: #f0dba9;
+    --white: #f5f1e8;
+    --muted: #a5b0bc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #071321;
+    border-bottom: 1px solid rgba(201,164,92,.2);
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    letter-spacing: 5px;
+    color: var(--gold);
+}
+
+.logo small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: white;
+    margin-top: 3px;
+}
+
+nav a.back {
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 12px 18px;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    background:
+        linear-gradient(rgba(4,13,24,.83),rgba(4,13,24,.9)),
+        url("https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=85&w=2200");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    width: 90%;
+    margin: auto;
+}
+
+.label {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 10px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(40px,7vw,78px);
+    font-weight: 400;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: 25px auto;
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 100px 0;
+}
+
+.center {
+    text-align: center;
+}
+
+.title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(30px,4vw,46px);
+    font-weight: 400;
+}
+
+.title span {
+    color: var(--gold);
+}
+
+.description {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+    max-width: 700px;
+    margin: 20px auto 0;
+}
+
+/* SERVICE CARDS */
+
+.services {
+    background: var(--navy);
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 22px;
+    margin-top: 55px;
+}
+
+.service-card {
+    background: linear-gradient(145deg,#12283e,#091725);
+    padding: 40px;
+    border: 1px solid rgba(201,164,92,.22);
+    transition: .4s;
+}
+
+.service-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--gold);
+}
+
+.number {
+    color: var(--gold);
+    font-family: 'Cinzel',serif;
+    font-size: 28px;
+    margin-bottom: 22px;
+}
+
+.service-card h2 {
+    font-family: 'Cinzel',serif;
+    font-weight: 400;
+    font-size: 23px;
+    margin-bottom: 16px;
+}
+
+.service-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+}
+
+/* GLOBAL DESTINATIONS */
+
+.destinations {
+    background: var(--navy2);
+}
+
+.country-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    margin-top: 45px;
+}
+
+.country {
+    padding: 25px 10px;
+    text-align: center;
+    background: #0b1b2c;
+    border: 1px solid rgba(201,164,92,.25);
+    color: var(--goldlight);
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.country:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: translateY(-4px);
+}
+
+/* AIR AND SEA */
+
+.freight {
+    background: var(--navy);
+}
+
+.freight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.freight-card {
+    min-height: 300px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background-size: cover;
+    background-position: center;
+
+    border: 1px solid rgba(201,164,92,.3);
+}
+
+.air {
+    background-image:
+        linear-gradient(rgba(4,13,24,.45),rgba(4,13,24,.95)),
+        url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=85&w=1200");
+}
+
+.sea {
+    background-image:
+        linear-gradient(rgba(4,13,24,.45),rgba(4,13,24,.95)),
+        url("https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=85&w=1200");
+}
+
+.freight-card h2 {
+    font-family: 'Cinzel',serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--goldlight);
+}
+
+.freight-card p {
+    color: #c0c9d2;
+    font-size: 12px;
+    line-height: 1.9;
+    margin-top: 12px;
+}
+
+/* CONTACT */
+
+.contact {
+    text-align: center;
+    background: #0b1b2c;
+}
+
+.contact p {
+    color: var(--muted);
+    margin: 25px auto;
+    max-width: 650px;
+    line-height: 2;
+    font-size: 13px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 27px;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: var(--lightgold);
+}
+
+/* FOOTER */
+
+footer {
+    background: #040c15;
+    border-top: 1px solid rgba(201,164,92,.2);
+    padding: 35px 5%;
+    text-align: center;
+}
+
+footer p {
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+/* ANIMATIONS */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:750px) {
+
+    .service-grid,
+    .freight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .country-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:480px) {
+
+    nav {
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    nav a.back {
+        padding: 10px;
+        font-size: 8px;
+    }
+
+    .service-card {
+        padding: 28px;
+    }
+
+    .freight-card {
+        min-height: 260px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <a href="about.html" class="logo">
+        ALEXIM
+        <small>ARYAN LOGISTICS EXPORT IMPORT</small>
+    </a>
+
+    <a href="about.html" class="back">
+        ← BACK TO MAIN PAGE
+    </a>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="label">
+            ARYAN LOGISTICS
+        </div>
+
+        <h1>
+            OUR <span>SERVICES.</span>
+        </h1>
+
+        <p>
+            Supporting businesses through clearing agency,
+            import-export and international freight services.
+            Connecting business operations with global trade.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- SERVICES -->
+
+<section class="services">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="label">
+                What We Offer
+            </div>
+
+            <h2 class="title">
+                Our Core <span>Services.</span>
+            </h2>
+
+            <p class="description">
+                Aryan Logistics operates across key areas of
+                international trade and cargo movement.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <div class="service-card reveal">
+
+                <div class="number">01</div>
+
+                <h2>Clearing Agent</h2>
+
+                <p>
+                    Clearing agency services supporting the
+                    customs clearance process and the movement
+                    of goods through relevant trade procedures.
+                </p>
+
+            </div>
+
+
+            <div class="service-card reveal">
+
+                <div class="number">02</div>
+
+                <h2>Exporter & Importer</h2>
+
+                <p>
+                    Import and export activities connecting
+                    products and businesses with international
+                    markets and cross-border trade opportunities.
+                </p>
+
+            </div>
+
+
+            <div class="service-card reveal">
+
+                <div class="number">03</div>
+
+                <h2>Air Freight</h2>
+
+                <p>
+                    Air cargo solutions for businesses moving
+                    goods internationally through air transport.
+                </p>
+
+            </div>
+
+
+            <div class="service-card reveal">
+
+                <div class="number">04</div>
+
+                <h2>Sea Freight</h2>
+
+                <p>
+                    Sea cargo solutions supporting international
+                    movement of goods through maritime transport.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AIR AND SEA VISUALS -->
+
+<section class="freight">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="label">
+                International Cargo Movement
+            </div>
+
+            <h2 class="title">
+                Across Air & <span>Sea.</span>
+            </h2>
+
+            <p class="description">
+                Different transportation channels. One objective:
+                connecting businesses with international trade.
+            </p>
+
+        </div>
+
+
+        <div class="freight-grid">
+
+            <div class="freight-card air reveal">
+
+                <h2>Air Freight</h2>
+
+                <p>
+                    International cargo transportation by air,
+                    supporting businesses with their global
+                    shipping requirements.
+                </p>
+
+            </div>
+
+
+            <div class="freight-card sea reveal">
+
+                <h2>Sea Freight</h2>
+
+                <p>
+                    Maritime cargo transportation for international
+                    trade and the movement of goods across oceans.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DESTINATIONS -->
+
+<section class="destinations">
+
+    <div class="container">
+
+        <div class="center">
+
+            <div class="label">
+                International Markets
+            </div>
+
+            <h2 class="title">
+                Our Global <span>Connections.</span>
+            </h2>
+
+            <p class="description">
+                Our international business activities and connections
+                include the following markets and destinations.
+            </p>
+
+        </div>
+
+
+        <div class="country-grid">
+
+            <div class="country reveal">DUBAI</div>
+
+            <div class="country reveal">INDONESIA</div>
+
+            <div class="country reveal">VIETNAM</div>
+
+            <div class="country reveal">ABU DHABI</div>
+
+            <div class="country reveal">SWITZERLAND</div>
+
+            <div class="country reveal">GERMANY</div>
+
+            <div class="country reveal">RUSSIA</div>
+
+            <div class="country reveal">SINGAPORE</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+    <div class="container">
+
+        <div class="label">
+            Business Enquiries
+        </div>
+
+        <h2 class="title">
+            Let's Move <span>Business Forward.</span>
+        </h2>
+
+        <p>
+            Looking to explore import-export opportunities,
+            clearing agency services or international freight?
+            Get in touch with Aryan Logistics.
+        </p>
+
+        <!-- Replace with your official contact details -->
+
+        <a href="mailto:YOUR-EMAIL@example.com" class="btn">
+            CONTACT ARYAN LOGISTICS
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="logo">
+        ALEXIM
+    </div>
+
+    <p>
+        ARYAN LOGISTICS EXPORT IMPORT
+    </p>
+
+    <p>
+        © 2026 ALEXIM. ALL RIGHTS RESERVED.
+    </p>
+
+</footer>
+
+
+<script>
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+
+    });
+
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+});
+
+</script>
+
+</body>
+</html>

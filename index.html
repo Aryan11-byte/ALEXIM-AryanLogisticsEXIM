@@ -3,1200 +3,1352 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080e19">
 <title>ALEXIM | Aryan Logistics Export Import</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <style>
-:root{
-  --bg:#080e19;
-  --bg2:#0d1726;
-  --gold:#c9a76a;
-  --lightgold:#ead6ad;
-  --white:#f5f1e9;
-  --muted:#a6adba;
-  --line:rgba(201,167,106,.22);
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',Arial,sans-serif;
+:root {
+    --navy: #06111f;
+    --navy2: #0b1b2d;
+    --gold: #c9a45c;
+    --lightgold: #f0d79c;
+    --white: #f5f2eb;
+    --muted: #9ba8b5;
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--white);
-  font-family:var(--sans);
-  overflow-x:hidden;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-a{text-decoration:none;color:inherit}
-button{font-family:inherit}
-::selection{background:var(--gold);color:#080e19}
 
-/* PRELOADER */
+html {
+    scroll-behavior: smooth;
+}
 
-#loader{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:#080e19;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  transition:opacity .8s ease,visibility .8s ease;
+body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
 }
-#loader.hide{opacity:0;visibility:hidden}
-.loader-logo{
-  font-family:var(--serif);
-  font-size:55px;
-  letter-spacing:12px;
-  color:var(--gold);
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
-.loader-line{
-  width:140px;
-  height:1px;
-  background:#263246;
-  margin-top:22px;
-  overflow:hidden;
+
+.gold {
+    color: var(--gold);
 }
-.loader-line:after{
-  content:"";
-  display:block;
-  width:100%;
-  height:100%;
-  background:var(--gold);
-  animation:loading 1.4s ease infinite;
-}
-@keyframes loading{
-  from{transform:translateX(-100%)}
-  to{transform:translateX(100%)}
+
+.container {
+    width: min(1180px, 90%);
+    margin: auto;
 }
 
 /* NAVIGATION */
 
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:100;
-  padding:20px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  transition:.4s;
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 22px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(6,17,31,.78);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(201,164,92,.15);
 }
-header.scrolled{
-  background:rgba(8,14,25,.94);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);
-  padding-top:13px;
-  padding-bottom:13px;
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 25px;
+    letter-spacing: 5px;
+    color: var(--gold);
 }
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
+
+.logo span {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-top: 3px;
 }
-.logo-mark{
-  width:43px;
-  height:43px;
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
 }
-.brand-name{
-  font-family:var(--serif);
-  font-size:27px;
-  letter-spacing:5px;
-  color:var(--lightgold);
+
+.nav-links a {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #c4cbd2;
+    transition: .3s;
 }
-.brand-sub{
-  display:block;
-  font-size:8px;
-  letter-spacing:2px;
-  color:var(--muted);
-  margin-top:1px;
+
+.nav-links a:hover {
+    color: var(--gold);
 }
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:32px;
+
+.nav-contact {
+    border: 1px solid var(--gold);
+    padding: 12px 19px;
+    color: var(--gold) !important;
 }
-.nav-links a{
-  font-size:10px;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
-  color:#c4cbd5;
-  transition:.3s;
-}
-.nav-links a:hover{color:var(--gold)}
-.nav-contact{
-  border:1px solid var(--gold);
-  padding:12px 20px;
-  color:var(--gold)!important;
-}
-.menu-btn{
-  display:none;
-  background:none;
-  border:0;
-  color:var(--gold);
-  font-size:25px;
-  cursor:pointer;
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 27px;
+    cursor: pointer;
 }
 
 /* HERO */
 
-.hero{
-  min-height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  padding:140px 9% 100px;
-  overflow:hidden;
-  background:
-  radial-gradient(ellipse at 76% 48%,rgba(34,69,105,.32),transparent 42%),
-  linear-gradient(110deg,#080e19 10%,#0d192a 70%,#080e19);
-}
-.hero:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:linear-gradient(90deg,rgba(8,14,25,.2),transparent 75%);
-}
-.hero-content{
-  position:relative;
-  z-index:3;
-  max-width:670px;
-}
-.eyebrow{
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:4px;
-  text-transform:uppercase;
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-.eyebrow:before{
-  content:"";
-  width:40px;
-  height:1px;
-  background:var(--gold);
-}
-.hero h1{
-  font-family:var(--serif);
-  font-size:clamp(65px,9vw,125px);
-  font-weight:400;
-  line-height:.88;
-  letter-spacing:-3px;
-  margin:35px 0 28px;
-}
-.hero h1 span{color:var(--gold);font-style:italic}
-.hero-description{
-  color:#b6c0ce;
-  font-size:14px;
-  line-height:2;
-  max-width:470px;
-  font-weight:300;
-}
-.hero-buttons{
-  display:flex;
-  gap:16px;
-  margin-top:38px;
-  flex-wrap:wrap;
-}
-.btn{
-  padding:16px 25px;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  transition:.3s;
-  display:inline-flex;
-  align-items:center;
-  gap:15px;
-}
-.btn-primary{
-  background:var(--gold);
-  color:#101722;
-}
-.btn-primary:hover{
-  background:var(--lightgold);
-  transform:translateY(-3px);
-}
-.btn-outline{
-  border:1px solid var(--line);
-  color:var(--white);
-}
-.btn-outline:hover{
-  border-color:var(--gold);
-  color:var(--gold);
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 90px;
 }
 
-/* GLOBE */
-
-.globe-stage{
-  position:absolute;
-  right:3%;
-  top:50%;
-  transform:translateY(-50%);
-  width:min(48vw,590px);
-  aspect-ratio:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:1;
-}
-.globe{
-  position:relative;
-  width:75%;
-  aspect-ratio:1;
-  border-radius:50%;
-  background:
-  radial-gradient(circle at 32% 27%,rgba(111,153,185,.36),transparent 17%),
-  radial-gradient(circle at 65% 60%,rgba(35,85,123,.35),transparent 25%),
-  radial-gradient(circle at 35% 40%,#213f5b,#0d1b2c 60%,#050b13);
-  box-shadow:
-  inset -35px -20px 65px #03070d,
-  inset 8px 8px 35px rgba(180,205,225,.16),
-  0 0 90px rgba(53,111,160,.13);
-  animation:float 7s ease-in-out infinite;
-  overflow:hidden;
-}
-.globe:before,.globe:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  border:1px solid rgba(210,185,140,.22);
-}
-.globe:before{
-  transform:scaleX(.36);
-  border-left:1px solid rgba(201,167,106,.4);
-  border-right:1px solid rgba(201,167,106,.4);
-}
-.globe:after{
-  transform:scaleY(.36);
-  border-top:1px solid rgba(201,167,106,.4);
-  border-bottom:1px solid rgba(201,167,106,.4);
-}
-.globe-grid{
-  position:absolute;
-  inset:0;
-  border-radius:50%;
-  background:repeating-linear-gradient(
-    0deg,transparent 0px,transparent 37px,
-    rgba(201,167,106,.12) 38px,transparent 39px
-  );
-  animation:rotateGrid 20s linear infinite;
-}
-.orbit{
-  position:absolute;
-  width:115%;
-  height:36%;
-  border:1px solid rgba(201,167,106,.5);
-  border-radius:50%;
-  transform:rotate(-25deg);
-}
-.orbit.two{
-  transform:rotate(58deg);
-  width:110%;
-  height:60%;
-  border-color:rgba(201,167,106,.22);
-}
-.orbit-dot{
-  position:absolute;
-  width:8px;height:8px;
-  border-radius:50%;
-  background:var(--gold);
-  box-shadow:0 0 20px var(--gold);
-  top:16%;left:75%;
-}
-.globe-caption{
-  position:absolute;
-  bottom:4%;
-  right:10%;
-  font-size:9px;
-  letter-spacing:3px;
-  color:var(--gold);
-  text-transform:uppercase;
-}
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-20px)}
-}
-@keyframes rotateGrid{
-  from{transform:rotate(0)}
-  to{transform:rotate(360deg)}
-}
-.hero-bottom{
-  position:absolute;
-  bottom:30px;
-  left:9%;
-  right:9%;
-  display:flex;
-  justify-content:space-between;
-  color:#7e8998;
-  font-size:9px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  z-index:3;
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    right: 3%;
+    top: 10%;
+    background: radial-gradient(circle, rgba(25,91,126,.18), transparent 68%);
+    pointer-events: none;
 }
 
-/* GENERAL */
+.hero-content {
+    position: relative;
+    z-index: 5;
+    width: 48%;
+    padding-left: 9%;
+}
 
-section{position:relative}
-.section-wrap{
-  max-width:1250px;
-  margin:auto;
-  padding:120px 7%;
+.eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
 }
-.section-label{
-  font-size:10px;
-  color:var(--gold);
-  letter-spacing:3px;
-  text-transform:uppercase;
-  margin-bottom:22px;
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(48px, 7vw, 92px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: 3px;
 }
-.section-title{
-  font-family:var(--serif);
-  font-size:clamp(44px,6vw,78px);
-  line-height:.98;
-  font-weight:400;
-  letter-spacing:-1px;
+
+.hero h1 span {
+    color: var(--gold);
 }
-.section-title em{color:var(--gold)}
-.section-intro{
-  max-width:580px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:2;
-  margin-top:24px;
-  font-weight:300;
+
+.hero-description {
+    color: var(--muted);
+    max-width: 440px;
+    line-height: 1.9;
+    font-size: 14px;
+    margin: 27px 0 35px;
 }
-.gold-rule{
-  width:65px;
-  height:1px;
-  background:var(--gold);
-  margin:30px 0;
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
-.reveal{
-  opacity:0;
-  transform:translateY(35px);
-  transition:opacity .9s ease,transform .9s ease;
+
+.btn {
+    padding: 16px 26px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: .3s;
+    display: inline-block;
 }
-.reveal.show{
-  opacity:1;
-  transform:translateY(0);
+
+.btn-gold {
+    background: var(--gold);
+    color: var(--navy);
+    border: 1px solid var(--gold);
+}
+
+.btn-gold:hover {
+    background: var(--lightgold);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    border: 1px solid rgba(201,164,92,.6);
+    color: var(--gold);
+}
+
+.btn-outline:hover {
+    background: rgba(201,164,92,.1);
+}
+
+#globe-container {
+    position: absolute;
+    width: 65%;
+    height: 90%;
+    right: -5%;
+    top: 7%;
+    z-index: 2;
+}
+
+.hero-bottom {
+    position: absolute;
+    bottom: 35px;
+    left: 9%;
+    display: flex;
+    gap: 50px;
+    z-index: 5;
+}
+
+.hero-stat strong {
+    display: block;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.hero-stat span {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* GENERAL SECTIONS */
+
+section {
+    padding: 115px 0;
+    position: relative;
+}
+
+.section-label {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(30px, 4vw, 49px);
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.section-description {
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 14px;
+    margin-top: 22px;
+    max-width: 650px;
 }
 
 /* ABOUT */
 
-.about{
-  background:#0c1523;
-  overflow:hidden;
+.about {
+    background: #091827;
+    border-top: 1px solid rgba(201,164,92,.12);
+    border-bottom: 1px solid rgba(201,164,92,.12);
 }
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:90px;
-  align-items:center;
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+    align-items: center;
 }
-.about-visual{
-  min-height:470px;
-  position:relative;
-  background:
-  radial-gradient(circle at 50% 45%,rgba(201,167,106,.15),transparent 50%),
-  linear-gradient(145deg,#16263b,#09111e);
-  border:1px solid var(--line);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+
+.about-visual {
+    min-height: 390px;
+    border: 1px solid rgba(201,164,92,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background:
+        radial-gradient(circle, rgba(201,164,92,.1), transparent 65%),
+        linear-gradient(135deg, #10243a, #06111f);
+    overflow: hidden;
 }
-.about-visual:before{
-  content:"A";
-  font-family:var(--serif);
-  font-size:300px;
-  color:rgba(201,167,106,.12);
-  position:absolute;
+
+.about-visual::before,
+.about-visual::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(201,164,92,.25);
+    border-radius: 50%;
 }
-.about-visual-inner{
-  text-align:center;
-  position:relative;
-  z-index:2;
+
+.about-visual::after {
+    width: 220px;
+    height: 220px;
 }
-.about-visual-inner svg{width:120px;height:120px}
-.about-visual-inner p{
-  color:var(--gold);
-  letter-spacing:5px;
-  font-size:10px;
-  margin-top:25px;
+
+.about-emblem {
+    font-family: 'Cinzel', serif;
+    font-size: 65px;
+    letter-spacing: 12px;
+    color: var(--gold);
+    z-index: 2;
 }
-.about-note{
-  position:absolute;
-  bottom:25px;
-  left:25px;
-  font-size:9px;
-  letter-spacing:2px;
-  color:#9ba7b7;
+
+.about-caption {
+    position: absolute;
+    bottom: 24px;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--muted);
 }
 
 /* SERVICES */
 
-.services{
-  background:#080e19;
+.services {
+    background: var(--navy);
 }
-.services-heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  gap:35px;
-  margin-bottom:60px;
+
+.center-heading {
+    text-align: center;
+    margin-bottom: 60px;
 }
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--line);
-  border-left:1px solid var(--line);
+
+.center-heading .section-description {
+    margin-left: auto;
+    margin-right: auto;
 }
-.service-card{
-  padding:42px 34px;
-  min-height:275px;
-  border-right:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  transition:.4s;
-  background:rgba(255,255,255,.008);
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
-.service-card:hover{
-  background:linear-gradient(145deg,rgba(201,167,106,.12),transparent);
-  transform:translateY(-5px);
+
+.service-card {
+    min-height: 270px;
+    padding: 35px 29px;
+    border: 1px solid rgba(201,164,92,.18);
+    background: linear-gradient(145deg, #102238, #091522);
+    transition: .4s;
 }
-.service-number{
-  font-family:var(--serif);
-  font-size:23px;
-  color:var(--gold);
+
+.service-card:hover {
+    transform: translateY(-9px);
+    border-color: var(--gold);
+    background: linear-gradient(145deg, #172d45, #0a1929);
 }
-.service-card h3{
-  font-family:var(--serif);
-  font-size:31px;
-  font-weight:500;
-  margin:35px 0 15px;
+
+.service-number {
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    margin-bottom: 28px;
 }
-.service-card p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.9;
-  font-weight:300;
+
+.service-card h3 {
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
 }
 
 /* FOUNDERS */
 
-.founders{
-  background:
-  radial-gradient(ellipse at 80% 30%,rgba(37,61,87,.25),transparent 45%),
-  #0c1523;
+.founders {
+    background: #091827;
 }
-.founders-heading{text-align:center;margin-bottom:65px}
-.founders-heading .section-intro{margin-left:auto;margin-right:auto}
-.founders-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:25px;
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 55px;
 }
-.founder-card{
-  border:1px solid var(--line);
-  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.008));
-  padding:42px;
-  position:relative;
-  overflow:hidden;
-  transition:.4s;
+
+.founder-card {
+    padding: 40px;
+    background: #0d2033;
+    border: 1px solid rgba(201,164,92,.2);
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
 }
-.founder-card:hover{
-  transform:translateY(-8px);
-  border-color:rgba(201,167,106,.6);
+
+.founder-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
 }
-.founder-card:after{
-  content:"";
-  position:absolute;
-  right:-50px;
-  top:-80px;
-  width:230px;
-  height:230px;
-  border:1px solid rgba(201,167,106,.12);
-  border-radius:50%;
-  box-shadow:0 0 0 25px rgba(201,167,106,.025),0 0 0 50px rgba(201,167,106,.02);
+
+.founder-card::after {
+    content: "A";
+    position: absolute;
+    right: 15px;
+    bottom: -90px;
+    font-family: 'Cinzel', serif;
+    font-size: 260px;
+    color: rgba(201,164,92,.035);
+    pointer-events: none;
 }
-.founder-role{
-  color:var(--gold);
-  font-size:9px;
-  letter-spacing:3px;
-  text-transform:uppercase;
+
+.founder-role {
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
-.founder-initial{
-  width:85px;
-  height:85px;
-  border:1px solid var(--gold);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:var(--serif);
-  font-size:43px;
-  color:var(--gold);
-  margin:35px 0;
+
+.founder-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 29px;
+    font-weight: 400;
+    margin: 17px 0;
 }
-.founder-card h3{
-  font-family:var(--serif);
-  font-size:46px;
-  font-weight:400;
+
+.founder-card p {
+    position: relative;
+    z-index: 2;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 13px;
 }
-.founder-position{
-  color:var(--gold);
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin:8px 0 22px;
-}
-.founder-card p{
-  color:var(--muted);
-  font-size:13px;
-  line-height:2;
-  font-weight:300;
-  max-width:430px;
-}
-.founder-tag{
-  display:inline-block;
-  border:1px solid var(--line);
-  color:#c8b58e;
-  padding:10px 14px;
-  font-size:9px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  margin-top:28px;
+
+.founder-highlight {
+    display: inline-block;
+    margin-top: 25px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(201,164,92,.3);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 1px;
 }
 
 /* LEGACY */
 
-.legacy{
-  background:#080e19;
-}
-.legacy-box{
-  border:1px solid var(--line);
-  padding:75px 8%;
-  text-align:center;
-  background:
-  radial-gradient(ellipse at center,rgba(201,167,106,.09),transparent 65%),
-  #0c1523;
-}
-.legacy-box .section-title{max-width:800px;margin:auto}
-.legacy-box .section-intro{margin:25px auto 0}
-.legacy-stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  margin-top:65px;
-}
-.stat strong{
-  display:block;
-  font-family:var(--serif);
-  font-size:55px;
-  color:var(--gold);
-  font-weight:400;
-}
-.stat span{
-  display:block;
-  color:var(--muted);
-  font-size:9px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-top:8px;
+.legacy {
+    text-align: center;
+    background:
+        radial-gradient(ellipse at center, rgba(28,72,100,.22), transparent 70%),
+        var(--navy);
 }
 
-/* PHILOSOPHY */
+.legacy .section-title {
+    max-width: 800px;
+    margin: auto;
+}
 
-.philosophy{
-  background:#0c1523;
+.legacy .section-description {
+    margin: 25px auto 0;
 }
-.philosophy-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:70px;
-  align-items:center;
-}
-.quote{
-  font-family:var(--serif);
-  font-size:clamp(35px,5vw,61px);
-  line-height:1.08;
-  color:var(--white);
-}
-.quote em{color:var(--gold)}
-.quote-author{
-  margin-top:30px;
-  font-size:9px;
-  letter-spacing:3px;
-  color:var(--gold);
-  text-transform:uppercase;
-}
-.principles{
-  display:flex;
-  flex-direction:column;
-  gap:0;
-}
-.principle{
-  padding:24px 0;
-  border-bottom:1px solid var(--line);
-  display:flex;
-  gap:22px;
-}
-.principle span{
-  color:var(--gold);
-  font-family:var(--serif);
-  font-size:22px;
-}
-.principle h4{
-  font-family:var(--serif);
-  font-size:25px;
-  font-weight:500;
-  margin-bottom:5px;
-}
-.principle p{
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.8;
+
+.legacy-line {
+    width: 70px;
+    height: 1px;
+    background: var(--gold);
+    margin: 35px auto;
 }
 
 /* CONTACT */
 
-.contact{
-  background:
-  radial-gradient(ellipse at center,rgba(41,72,105,.22),transparent 60%),
-  #080e19;
-  text-align:center;
+.contact {
+    background: #091827;
+    border-top: 1px solid rgba(201,164,92,.15);
 }
-.contact .section-intro{margin:25px auto 35px}
-.contact .hero-buttons{justify-content:center}
-.contact-brand{
-  font-family:var(--serif);
-  font-size:clamp(65px,12vw,145px);
-  color:rgba(201,167,106,.1);
-  letter-spacing:12px;
-  line-height:1;
-  margin-bottom:-25px;
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.contact-box {
+    border: 1px solid rgba(201,164,92,.25);
+    padding: 35px;
+    background: #0d2033;
+}
+
+.contact-box p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+.contact-box a {
+    color: var(--gold);
+    font-size: 13px;
 }
 
 /* FOOTER */
 
-footer{
-  padding:35px 7%;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
-  background:#060b13;
+footer {
+    padding: 35px 5%;
+    border-top: 1px solid rgba(201,164,92,.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
-footer p{
-  font-size:10px;
-  color:#8993a2;
-  letter-spacing:1px;
+
+footer p {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
 }
-footer span{color:var(--gold)}
+
+/* REVEAL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* RESPONSIVE */
 
-@media(max-width:900px){
-  .globe-stage{right:-12%;opacity:.45;width:65vw}
-  .hero-content{max-width:600px}
-  .about-grid,.philosophy-grid{gap:40px}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
+@media(max-width: 850px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: #081626;
+        flex-direction: column;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero {
+        min-height: 900px;
+        align-items: flex-start;
+    }
+
+    .hero-content {
+        width: 90%;
+        padding: 100px 0 0;
+        margin: auto;
+    }
+
+    #globe-container {
+        width: 100%;
+        height: 50%;
+        top: 43%;
+        right: 0;
+    }
+
+    .hero-bottom {
+        bottom: 25px;
+        left: 5%;
+        gap: 25px;
+    }
+
+    .about-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .founder-grid {
+        grid-template-columns: 1fr;
+    }
 }
-@media(max-width:700px){
-  header{padding:16px 6%}
-  .brand-name{font-size:23px}
-  .nav-links{
-    display:none;
-    position:absolute;
-    top:75px;
-    left:0;
-    width:100%;
-    padding:25px 7%;
-    background:#0b1421;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:24px;
-    border-bottom:1px solid var(--line);
-  }
-  .nav-links.open{display:flex}
-  .menu-btn{display:block}
-  .hero{padding:145px 7% 130px;min-height:100svh}
-  .hero h1{font-size:clamp(65px,16vw,100px)}
-  .hero-content{max-width:100%}
-  .hero-description{max-width:340px}
-  .globe-stage{
-    width:85vw;
-    right:-35%;
-    opacity:.25;
-  }
-  .hero-bottom{left:7%;right:7%;font-size:8px}
-  .section-wrap{padding:85px 7%}
-  .about-grid,.philosophy-grid{grid-template-columns:1fr}
-  .about-visual{min-height:320px;order:2}
-  .services-heading{display:block}
-  .services-grid{grid-template-columns:1fr}
-  .service-card{min-height:220px}
-  .founders-grid{grid-template-columns:1fr}
-  .founder-card{padding:30px}
-  .founder-card h3{font-size:39px}
-  .legacy-box{padding:55px 7%}
-  .legacy-stats{grid-template-columns:1fr;gap:35px}
-  .stat strong{font-size:45px}
-  .contact-brand{letter-spacing:4px}
-  footer{justify-content:center;text-align:center;flex-direction:column}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
-    scroll-behavior:auto!important;
-  }
+
+@media(max-width: 520px) {
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .hero-bottom {
+        gap: 16px;
+    }
+
+    .hero-stat strong {
+        font-size: 16px;
+    }
+
+    .hero-stat span {
+        font-size: 8px;
+    }
+
+    .founder-card {
+        padding: 28px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
-
-<div id="loader">
-  <div class="loader-logo">ALEXIM</div>
-  <div class="loader-line"></div>
-</div>
-
 <!-- NAVIGATION -->
 
-<header id="header">
-  <a href="#home" class="brand">
-    <svg class="logo-mark" viewBox="0 0 100 100" fill="none" aria-label="ALEXIM logo">
-      <path d="M50 7L91 83H9L50 7Z" stroke="#c9a76a" stroke-width="2"/>
-      <path d="M50 27L78 76H22L50 27Z" stroke="#c9a76a" stroke-width="1" opacity=".5"/>
-      <path d="M35 68L50 39L65 68M41 57H59" stroke="#ead6ad" stroke-width="3" stroke-linecap="round"/>
-      <path d="M7 91H93" stroke="#c9a76a" stroke-width="2"/>
-    </svg>
-    <div>
-      <div class="brand-name">ALEXIM</div>
-      <span class="brand-sub">ARYAN LOGISTICS EXPORT IMPORT</span>
+<nav>
+    <a href="#home" class="logo">
+        ALEXIM
+        <span>ARYAN LOGISTICS EXPORT IMPORT</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#founders">Founders</a>
+        <a href="#contact" class="nav-contact">Contact</a>
     </div>
-  </a>
 
-  <nav class="nav-links" id="navLinks">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Our Expertise</a>
-    <a href="#founders">Founders</a>
-    <a href="#legacy">Our Legacy</a>
-    <a href="#contact" class="nav-contact">Contact Us</a>
-  </nav>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+</nav>
 
-  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
-</header>
 
 <!-- HERO -->
 
-<section class="hero" id="home">
+<header class="hero" id="home">
 
-  <div class="hero-content reveal">
-    <div class="eyebrow">Beyond Borders. Beyond Business.</div>
+    <div class="hero-content reveal">
+        <div class="eyebrow">Beyond Borders. Beyond Business.</div>
 
-    <h1>
-      Trade<br>
-      Without<br>
-      <span>Limits.</span>
-    </h1>
+        <h1>
+            GLOBAL<br>
+            TRADE.<br>
+            <span>REDEFINED.</span>
+        </h1>
 
-    <p class="hero-description">
-      Connecting opportunities across borders through experience,
-      knowledge and a vision for global commerce.
-      Discover a new perspective on international trade with ALEXIM.
-    </p>
+        <p class="hero-description">
+            Connecting businesses, markets and opportunities
+            across borders. Built on experience, driven by
+            ambition, and focused on the future of international trade.
+        </p>
 
-    <div class="hero-buttons">
-      <a href="#about" class="btn btn-primary">Discover ALEXIM <span>↗</span></a>
-      <a href="#founders" class="btn btn-outline">Meet Our Founders</a>
+        <div class="hero-buttons">
+            <a href="#about" class="btn btn-gold">Discover ALEXIM</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
     </div>
-  </div>
 
-  <div class="globe-stage">
-    <div class="globe">
-      <div class="globe-grid"></div>
+    <div id="globe-container"></div>
+
+    <div class="hero-bottom">
+        <div class="hero-stat">
+            <strong>25+ Years</strong>
+            <span>Industry Experience</span>
+        </div>
+
+        <div class="hero-stat">
+            <strong>Global</strong>
+            <span>Trade Vision</span>
+        </div>
+
+        <div class="hero-stat">
+            <strong>One Vision</strong>
+            <span>Future Focused</span>
+        </div>
     </div>
-    <div class="orbit"><div class="orbit-dot"></div></div>
-    <div class="orbit two"></div>
-    <div class="globe-caption">One World · Endless Opportunities</div>
-  </div>
 
-  <div class="hero-bottom">
-    <span>Mumbai, India</span>
-    <span>Global Vision · Trusted Experience</span>
-    <span>Scroll to Explore ↓</span>
-  </div>
-</section>
+</header>
+
 
 <!-- ABOUT -->
 
 <section class="about" id="about">
- <div class="section-wrap about-grid">
+    <div class="container about-grid">
 
-  <div class="about-visual reveal">
-    <div class="about-visual-inner">
-      <svg viewBox="0 0 150 150" fill="none">
-        <circle cx="75" cy="75" r="61" stroke="#c9a76a" stroke-width="1"/>
-        <ellipse cx="75" cy="75" rx="27" ry="61" stroke="#c9a76a" stroke-width="1"/>
-        <ellipse cx="75" cy="75" rx="61" ry="23" stroke="#c9a76a" stroke-width="1"/>
-        <path d="M17 75H133M75 14V136" stroke="#c9a76a" stroke-width="1"/>
-        <path d="M75 31L86 75L75 119L64 75L75 31Z" fill="#c9a76a" opacity=".5"/>
-      </svg>
-      <p>CONNECTING THE WORLD</p>
+        <div class="about-visual reveal">
+            <div class="about-emblem">A</div>
+            <div class="about-caption">ARYAN LOGISTICS EXPORT IMPORT</div>
+        </div>
+
+        <div class="reveal">
+            <div class="section-label">Who We Are</div>
+
+            <h2 class="section-title">
+                A Vision Built<br>
+                <span class="gold">Beyond Borders.</span>
+            </h2>
+
+            <p class="section-description">
+                ALEXIM stands for Aryan Logistics Export Import.
+                It represents a vision to connect businesses with
+                international opportunities through the world of
+                import and export.
+            </p>
+
+            <p class="section-description">
+                Combining practical industry experience with a
+                forward-looking approach, our ambition is to make
+                global trade more accessible, understandable and
+                opportunity-driven.
+            </p>
+        </div>
+
     </div>
-    <div class="about-note">ALEXIM · INTERNATIONAL TRADE</div>
-  </div>
-
-  <div class="reveal">
-    <div class="section-label">01 / Who We Are</div>
-    <h2 class="section-title">
-      A vision built<br>
-      on <em>experience.</em>
-    </h2>
-    <div class="gold-rule"></div>
-    <p class="section-intro">
-      ALEXIM stands for Aryan Logistics Export Import.
-      Built around a combination of real-world industry experience
-      and a new generation's ambition, our vision is to make
-      international trade more accessible, understandable and connected.
-      <br><br>
-      With roots in Mumbai and a global outlook, we believe that
-      every successful trade relationship begins with knowledge,
-      trust and the right approach.
-    </p>
-    <a href="#founders" class="btn btn-outline" style="margin-top:30px">
-      The People Behind ALEXIM ↗
-    </a>
-  </div>
-
- </div>
 </section>
+
 
 <!-- SERVICES -->
 
 <section class="services" id="services">
- <div class="section-wrap">
+    <div class="container">
 
-  <div class="services-heading reveal">
-    <div>
-      <div class="section-label">02 / What We Explore</div>
-      <h2 class="section-title">The world of<br><em>global trade.</em></h2>
+        <div class="center-heading reveal">
+            <div class="section-label">What We Do</div>
+
+            <h2 class="section-title">
+                The World of <span class="gold">Global Trade</span>
+            </h2>
+
+            <p class="section-description">
+                Explore the key areas that shape international commerce.
+            </p>
+        </div>
+
+        <div class="service-grid">
+
+            <div class="service-card reveal">
+                <div class="service-number">01</div>
+                <h3>Import Solutions</h3>
+                <p>
+                    Supporting businesses exploring international
+                    sourcing and opportunities to bring products
+                    across borders.
+                </p>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-number">02</div>
+                <h3>Export Opportunities</h3>
+                <p>
+                    Exploring international markets and helping
+                    businesses understand the possibilities of
+                    taking products beyond borders.
+                </p>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-number">03</div>
+                <h3>Global Trade</h3>
+                <p>
+                    Understanding the connections between buyers,
+                    sellers, suppliers and international markets.
+                </p>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-number">04</div>
+                <h3>Logistics</h3>
+                <p>
+                    Understanding the movement of goods and the
+                    processes involved in international supply chains.
+                </p>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-number">05</div>
+                <h3>Trade Knowledge</h3>
+                <p>
+                    Building awareness around the processes,
+                    documentation and fundamentals of EXIM.
+                </p>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-number">06</div>
+                <h3>Business Connections</h3>
+                <p>
+                    A vision focused on creating meaningful
+                    connections between businesses and global markets.
+                </p>
+            </div>
+
+        </div>
     </div>
-    <p class="section-intro">
-      International commerce involves many moving parts.
-      Explore the key areas that shape the journey of products
-      and businesses across borders.
-    </p>
-  </div>
-
-  <div class="services-grid">
-
-    <div class="service-card reveal">
-      <div class="service-number">01</div>
-      <h3>Global Sourcing</h3>
-      <p>Understanding products, suppliers, sourcing opportunities
-      and the process of identifying the right business partners.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-number">02</div>
-      <h3>Import & Export</h3>
-      <p>Exploring the fundamentals of international trade,
-      cross-border transactions and market opportunities.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-number">03</div>
-      <h3>Logistics</h3>
-      <p>Discovering the journey of goods through transportation,
-      shipping, freight and supply-chain coordination.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-number">04</div>
-      <h3>Global Markets</h3>
-      <p>Understanding international markets, trade relationships,
-      demand and opportunities across different regions.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-number">05</div>
-      <h3>Trade Knowledge</h3>
-      <p>Learning about documentation, procedures, commercial
-      terms and the details behind international transactions.</p>
-    </div>
-
-    <div class="service-card reveal">
-      <div class="service-number">06</div>
-      <h3>Business Connections</h3>
-      <p>Building relationships through communication, credibility,
-      research and a long-term approach to international business.</p>
-    </div>
-
-  </div>
- </div>
 </section>
+
 
 <!-- FOUNDERS -->
 
 <section class="founders" id="founders">
- <div class="section-wrap">
+    <div class="container">
 
-  <div class="founders-heading reveal">
-    <div class="section-label">03 / The Founders</div>
-    <h2 class="section-title">Two generations.<br><em>One vision.</em></h2>
-    <p class="section-intro">
-      ALEXIM brings together established industry experience
-      and a new generation's curiosity, creativity and ambition.
-    </p>
-  </div>
+        <div class="center-heading reveal">
+            <div class="section-label">The People Behind ALEXIM</div>
 
-  <div class="founders-grid">
+            <h2 class="section-title">
+                Experience Meets <span class="gold">Ambition.</span>
+            </h2>
 
-    <article class="founder-card reveal">
-      <div class="founder-role">Co-Founder · New Generation</div>
-      <div class="founder-initial">A</div>
-      <h3>Aryan Nanda</h3>
-      <div class="founder-position">Founder of NANDABOI</div>
-      <p>
-        At 15, Aryan Nanda is a young influencer and entrepreneur
-        with a community of over 100,000 across YouTube, Instagram,
-        Facebook and Threads.
-        <br><br>
-        Having built NANDABOI through years of content creation,
-        Aryan brings a fresh perspective, digital understanding
-        and a passion for exploring the world of international trade.
-      </p>
-      <div class="founder-tag">Content Creator · Entrepreneur</div>
-    </article>
+            <p class="section-description">
+                Two generations. Different strengths. One shared vision.
+            </p>
+        </div>
 
-    <article class="founder-card reveal">
-      <div class="founder-role">Co-Founder · Industry Experience</div>
-      <div class="founder-initial">S</div>
-      <h3>Suresh Nanda</h3>
-      <div class="founder-position">Founder of Aryan Logistics</div>
-      <p>
-        With over 25 years of real-world experience in the
-        import-export industry, Suresh Nanda brings extensive
-        practical knowledge and industry understanding.
-        <br><br>
-        As the founder of Aryan Logistics, a Mumbai-based
-        EXIM company, he provides the experience and foundation
-        behind ALEXIM's vision.
-      </p>
-      <div class="founder-tag">25+ Years · EXIM Experience</div>
-    </article>
+        <div class="founder-grid">
 
-  </div>
- </div>
+            <div class="founder-card reveal">
+                <div class="founder-role">Founder</div>
+
+                <h3>Aryan Nanda</h3>
+
+                <p>
+                    A young entrepreneur, digital creator and the
+                    founder of NANDABOI, Aryan brings a modern,
+                    ambitious and forward-looking perspective to ALEXIM.
+
+                    With a combined community of over 100,000 across
+                    social platforms, he aims to build a bridge between
+                    the next generation and the world of international
+                    business.
+                </p>
+
+                <div class="founder-highlight">
+                    DIGITAL CREATOR · ENTREPRENEUR · VISIONARY
+                </div>
+            </div>
+
+
+            <div class="founder-card reveal">
+                <div class="founder-role">Founder</div>
+
+                <h3>Suresh Nanda</h3>
+
+                <p>
+                    With over 25 years of real-world experience in the
+                    import-export industry, Suresh Nanda brings practical
+                    knowledge and industry understanding to the vision
+                    behind ALEXIM.
+
+                    As the founder of Aryan Logistics, his experience
+                    forms an important foundation for the next chapter.
+                </p>
+
+                <div class="founder-highlight">
+                    25+ YEARS · EXIM EXPERIENCE · INDUSTRY KNOWLEDGE
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
+
 
 <!-- LEGACY -->
 
-<section class="legacy" id="legacy">
- <div class="section-wrap">
+<section class="legacy">
+    <div class="container reveal">
 
-  <div class="legacy-box reveal">
-    <div class="section-label">04 / The Foundation</div>
-    <h2 class="section-title">
-      Experience that<br>
-      <em>shapes the vision.</em>
-    </h2>
-    <p class="section-intro">
-      ALEXIM's story is built on a foundation of industry knowledge,
-      digital experience and the belief that global opportunities
-      begin with understanding.
-    </p>
+        <div class="section-label">Our Philosophy</div>
 
-    <div class="legacy-stats">
-      <div class="stat">
-        <strong>25+</strong>
-        <span>Years of EXIM Experience</span>
-      </div>
-      <div class="stat">
-        <strong>100K+</strong>
-        <span>Creator Community</span>
-      </div>
-      <div class="stat">
-        <strong>2</strong>
-        <span>Generations · One Vision</span>
-      </div>
+        <h2 class="section-title">
+            Borders Separate Countries.<br>
+            <span class="gold">Trade Connects the World.</span>
+        </h2>
+
+        <div class="legacy-line"></div>
+
+        <p class="section-description">
+            Built on experience. Inspired by ambition.
+            Focused on creating opportunities beyond borders.
+        </p>
+
     </div>
-  </div>
-
- </div>
 </section>
 
-<!-- PHILOSOPHY -->
-
-<section class="philosophy">
- <div class="section-wrap philosophy-grid">
-
-  <div class="reveal">
-    <div class="section-label">05 / Our Philosophy</div>
-    <div class="quote">
-      "The world doesn't end at borders.
-      <em>It begins beyond them.</em>"
-    </div>
-    <div class="quote-author">The ALEXIM Perspective</div>
-  </div>
-
-  <div class="principles reveal">
-
-    <div class="principle">
-      <span>01</span>
-      <div>
-        <h4>Experience</h4>
-        <p>Respecting the knowledge gained through real-world industry experience.</p>
-      </div>
-    </div>
-
-    <div class="principle">
-      <span>02</span>
-      <div>
-        <h4>Integrity</h4>
-        <p>Building relationships through transparency, responsibility and trust.</p>
-      </div>
-    </div>
-
-    <div class="principle">
-      <span>03</span>
-      <div>
-        <h4>Learning</h4>
-        <p>Staying curious, asking better questions and understanding the details.</p>
-      </div>
-    </div>
-
-    <div class="principle">
-      <span>04</span>
-      <div>
-        <h4>Global Thinking</h4>
-        <p>Looking beyond geographical boundaries to understand opportunities.</p>
-      </div>
-    </div>
-
-  </div>
- </div>
-</section>
 
 <!-- CONTACT -->
 
 <section class="contact" id="contact">
- <div class="section-wrap reveal">
+    <div class="container contact-grid">
 
-  <div class="contact-brand">ALEXIM</div>
-  <div class="section-label">06 / Start a Conversation</div>
+        <div class="reveal">
+            <div class="section-label">Let's Connect</div>
 
-  <h2 class="section-title">
-    Let's think<br><em>globally.</em>
-  </h2>
+            <h2 class="section-title">
+                Let's Build<br>
+                <span class="gold">Global Connections.</span>
+            </h2>
 
-  <p class="section-intro">
-    Every great business relationship starts with a conversation.
-    Connect with ALEXIM and explore the possibilities of global trade.
-  </p>
+            <p class="section-description">
+                Have a business enquiry or want to explore
+                international trade opportunities?
+                Connect with ALEXIM.
+            </p>
+        </div>
 
-  <div class="hero-buttons">
-    <!-- Replace the email below with your official business email -->
-    <a href="mailto:YOUR-EMAIL@example.com" class="btn btn-primary">
-      Get in Touch ↗
-    </a>
-    <a href="#home" class="btn btn-outline">
-      Back to Top ↑
-    </a>
-  </div>
+        <div class="contact-box reveal">
+            <h3 style="font-family:Cinzel;color:#c9a45c;font-weight:400;font-size:25px;margin-bottom:18px;">
+                ALEXIM
+            </h3>
 
- </div>
+            <p>
+                Aryan Logistics Export Import<br>
+                Connecting ambition with global opportunity.
+            </p>
+
+            <!-- Replace these details with your real contact information -->
+
+            <p>
+                Email: <a href="mailto:YOUR-EMAIL@example.com">
+                    YOUR-EMAIL@example.com
+                </a>
+            </p>
+
+            <p>
+                Phone: <a href="tel:+910000000000">
+                    +91 XXXXX XXXXX
+                </a>
+            </p>
+
+            <a href="#home" class="btn btn-gold">Back to Top</a>
+        </div>
+
+    </div>
 </section>
+
 
 <!-- FOOTER -->
 
 <footer>
-  <div class="brand">
-    <svg class="logo-mark" viewBox="0 0 100 100" fill="none">
-      <path d="M50 7L91 83H9L50 7Z" stroke="#c9a76a" stroke-width="2"/>
-      <path d="M35 68L50 39L65 68M41 57H59" stroke="#ead6ad" stroke-width="3"/>
-      <path d="M7 91H93" stroke="#c9a76a" stroke-width="2"/>
-    </svg>
-    <div>
-      <div class="brand-name">ALEXIM</div>
-      <span class="brand-sub">ARYAN LOGISTICS EXPORT IMPORT</span>
-    </div>
-  </div>
+    <a href="#home" class="logo">
+        ALEXIM
+        <span>ARYAN LOGISTICS EXPORT IMPORT</span>
+    </a>
 
-  <p>© <span id="year"></span> ALEXIM. All Rights Reserved.</p>
-  <p>Beyond Borders. <span>Beyond Business.</span></p>
+    <p>© 2026 ALEXIM. ALL RIGHTS RESERVED.</p>
+
+    <p>BEYOND BORDERS. BEYOND BUSINESS.</p>
 </footer>
+
 
 <script>
 
-/* PRELOADER */
-
-window.addEventListener("load",()=>{
-  setTimeout(()=>{
-    document.getElementById("loader").classList.add("hide");
-  },900);
-});
-
-/* NAVIGATION */
-
-const header=document.getElementById("header");
-
-window.addEventListener("scroll",()=>{
-  header.classList.toggle("scrolled",window.scrollY>50);
-});
-
 /* MOBILE MENU */
 
-const menuBtn=document.getElementById("menuBtn");
-const navLinks=document.getElementById("navLinks");
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
 
-menuBtn.addEventListener("click",()=>{
-  navLinks.classList.toggle("open");
-  menuBtn.textContent=navLinks.classList.contains("open")?"✕":"☰";
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+    });
 });
 
-document.querySelectorAll(".nav-links a").forEach(link=>{
-  link.addEventListener("click",()=>{
-    navLinks.classList.remove("open");
-    menuBtn.textContent="☰";
-  });
+
+/* SCROLL REVEAL */
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
 });
 
-/* SCROLL ANIMATIONS */
 
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-      observer.unobserve(entry.target);
+/* ACTUAL THREE.JS 3D GLOBE */
+
+const container = document.getElementById("globe-container");
+
+if (window.THREE && container) {
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(
+        45,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+    );
+
+    camera.position.z = 5.5;
+
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+    });
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(container.clientWidth, container.clientHeight);
+
+    container.appendChild(renderer.domElement);
+
+
+    /* LIGHTING */
+
+    const ambientLight = new THREE.AmbientLight(0x7899bb, 0.8);
+    scene.add(ambientLight);
+
+    const mainLight = new THREE.PointLight(0xffd99a, 2.2);
+    mainLight.position.set(4, 3, 5);
+    scene.add(mainLight);
+
+    const blueLight = new THREE.PointLight(0x247db5, 1.5);
+    blueLight.position.set(-4, -2, 3);
+    scene.add(blueLight);
+
+
+    /* GLOBE */
+
+    const globeGroup = new THREE.Group();
+    scene.add(globeGroup);
+
+    const geometry = new THREE.SphereGeometry(1.65, 96, 96);
+
+    const material = new THREE.MeshPhongMaterial({
+        color: 0x1c5375,
+        shininess: 28,
+        specular: 0x557f99,
+        transparent: false
+    });
+
+    const globe = new THREE.Mesh(geometry, material);
+    globeGroup.add(globe);
+
+
+    /* GOLDEN GLOBE GRID */
+
+    const gridMaterial = new THREE.MeshBasicMaterial({
+        color: 0xc9a45c,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.17
+    });
+
+    const grid = new THREE.Mesh(
+        new THREE.SphereGeometry(1.665, 32, 24),
+        gridMaterial
+    );
+
+    globeGroup.add(grid);
+
+
+    /* CONTINENT-INSPIRED SURFACE DETAILS */
+
+    const landMaterial = new THREE.MeshPhongMaterial({
+        color: 0x6b9b9a,
+        shininess: 12,
+        specular: 0x284e65
+    });
+
+    function addLandShape(points) {
+        const shape = new THREE.Shape();
+
+        points.forEach((p, i) => {
+            if (i === 0) shape.moveTo(p[0], p[1]);
+            else shape.lineTo(p[0], p[1]);
+        });
+
+        shape.closePath();
+
+        const landGeometry = new THREE.ShapeGeometry(shape, 12);
+
+        const land = new THREE.Mesh(landGeometry, landMaterial);
+        land.position.z = 1.655;
+        globeGroup.add(land);
     }
-  });
-},{threshold:.12});
 
-document.querySelectorAll(".reveal").forEach(element=>{
-  observer.observe(element);
-});
+    // Stylised land silhouettes on the globe's front.
 
-/* FOOTER YEAR */
+    addLandShape([
+        [-0.25,1.25],[-0.65,1.15],[-0.85,.85],
+        [-.72,.55],[-.52,.40],[-.40,.05],
+        [-.18,-.05],[-.15,-.48],[-.35,-.85],
+        [-.18,-1.22],[.05,-1.0],[.12,-.55],
+        [.25,-.25],[.10,.1],[.15,.55],[.02,.9]
+    ]);
 
-document.getElementById("year").textContent=new Date().getFullYear();
+    addLandShape([
+        [.30,1.25],[.62,1.15],[.85,.9],
+        [.68,.65],[.92,.4],[.72,.18],
+        [.48,.35],[.30,.18],[.18,.55],
+        [.28,.85]
+    ]);
+
+    addLandShape([
+        [.55,-.12],[.95,-.05],[1.15,-.32],
+        [.92,-.65],[.65,-.78],[.42,-.48]
+    ]);
+
+
+    /* ATMOSPHERE */
+
+    const atmosphere = new THREE.Mesh(
+        new THREE.SphereGeometry(1.75, 64, 64),
+        new THREE.MeshBasicMaterial({
+            color: 0x4aa5d0,
+            transparent: true,
+            opacity: 0.07,
+            side: THREE.BackSide
+        })
+    );
+
+    globeGroup.add(atmosphere);
+
+
+    /* TRADE ROUTES */
+
+    function createRoute(start, end, height) {
+
+        const curve = new THREE.QuadraticBezierCurve3(
+            new THREE.Vector3(start[0], start[1], start[2]),
+            new THREE.Vector3(0, height, 1.5),
+            new THREE.Vector3(end[0], end[1], end[2])
+        );
+
+        const points = curve.getPoints(80);
+
+        const routeGeometry = new THREE.BufferGeometry().setFromPoints(points);
+
+        const routeMaterial = new THREE.LineBasicMaterial({
+            color: 0xe1b96d,
+            transparent: true,
+            opacity: 0.65
+        });
+
+        const route = new THREE.Line(routeGeometry, routeMaterial);
+        globeGroup.add(route);
+
+        return curve;
+    }
+
+    const routes = [
+        createRoute([-1.0,.65,1.15], [.95,.35,1.2], 1.65),
+        createRoute([-.75,-.55,1.35], [.65,-.8,1.25], .9),
+        createRoute([.05,1.1,1.2], [.85,.1,1.3], 1.7)
+    ];
+
+
+    /* GLOWING TRADE POINTS */
+
+    const pointGeometry = new THREE.SphereGeometry(.045, 16, 16);
+
+    const pointMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffd98a
+    });
+
+    const tradePoints = [];
+
+    routes.forEach(curve => {
+        const point = new THREE.Mesh(pointGeometry, pointMaterial);
+        globeGroup.add(point);
+
+        tradePoints.push({
+            mesh: point,
+            curve: curve,
+            progress: Math.random()
+        });
+    });
+
+
+    /* FLOATING 3D SHIPPING CONTAINERS */
+
+    const containerGroup = new THREE.Group();
+    scene.add(containerGroup);
+
+    function makeContainer(x, y, z, color, rotation) {
+
+        const box = new THREE.Mesh(
+            new THREE.BoxGeometry(.45, .22, .25),
+            new THREE.MeshPhongMaterial({
+                color: color,
+                shininess: 45,
+                specular: 0x777777
+            })
+        );
+
+        box.position.set(x, y, z);
+        box.rotation.y = rotation;
+
+        containerGroup.add(box);
+
+        // Container ridges
+
+        for (let i = 0; i < 7; i++) {
+
+            const ridge = new THREE.Mesh(
+                new THREE.BoxGeometry(.012, .225, .26),
+                new THREE.MeshBasicMaterial({
+                    color: 0xd7bd83,
+                    transparent: true,
+                    opacity: .55
+                })
+            );
+
+            ridge.position.set(
+                x - .20 + i * .065,
+                y,
+                z + .13
+            );
+
+            ridge.rotation.y = rotation;
+            containerGroup.add(ridge);
+        }
+    }
+
+    makeContainer(-2.0, -1.0, .1, 0x173f60, -.3);
+    makeContainer(2.0, 1.2, -.2, 0x8c6c38, .4);
+    makeContainer(1.9, -1.2, -.5, 0x173f60, -.4);
+
+
+    /* PARTICLES */
+
+    const particleGeometry = new THREE.BufferGeometry();
+    const particlePositions = [];
+
+    for (let i = 0; i < 450; i++) {
+
+        particlePositions.push(
+            (Math.random() - .5) * 12,
+            (Math.random() - .5) * 9,
+            (Math.random() - .5) * 5
+        );
+    }
+
+    particleGeometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(particlePositions, 3)
+    );
+
+    const particles = new THREE.Points(
+        particleGeometry,
+        new THREE.PointsMaterial({
+            color: 0xc9a45c,
+            size: .012,
+            transparent: true,
+            opacity: .7
+        })
+    );
+
+    scene.add(particles);
+
+
+    /* ANIMATION */
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    window.addEventListener("mousemove", (event) => {
+        mouseX = (event.clientX / window.innerWidth - .5) * .35;
+        mouseY = (event.clientY / window.innerHeight - .5) * .25;
+    });
+
+    let clock = new THREE.Clock();
+
+    function animate() {
+
+        requestAnimationFrame(animate);
+
+        const elapsed = clock.getElapsedTime();
+
+        globeGroup.rotation.y += .0018;
+
+        globeGroup.rotation.x +=
+            (mouseY - globeGroup.rotation.x) * .012;
+
+        globeGroup.rotation.y +=
+            (mouseX - globeGroup.rotation.y) * .008;
+
+        grid.rotation.y = 0;
+
+        tradePoints.forEach(point => {
+
+            point.progress += .0018;
+
+            if (point.progress > 1) point.progress = 0;
+
+            const position = point.curve.getPoint(point.progress);
+
+            point.mesh.position.copy(position);
+        });
+
+        containerGroup.rotation.y = Math.sin(elapsed * .3) * .08;
+        containerGroup.position.y = Math.sin(elapsed * .5) * .04;
+
+        particles.rotation.y = elapsed * .008;
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+
+    /* RESPONSIVE 3D RESIZING */
+
+    window.addEventListener("resize", () => {
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(width, height);
+    });
+
+}
 
 </script>
 

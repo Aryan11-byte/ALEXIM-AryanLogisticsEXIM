@@ -1,1025 +1,1204 @@
-
-
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080e19">
+<title>ALEXIM | Aryan Logistics Export Import</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<meta name="theme-color" content="#100e0b">
-
-<title>Aryan's Theory | Global Trade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-:root {
-
-  --bg: #100e0b;
-
-  --gold: #c7a66a;
-
-  --ivory: #f2e8d7;
-
-  --muted: #b9ad99;
-
+:root{
+  --bg:#080e19;
+  --bg2:#0d1726;
+  --gold:#c9a76a;
+  --lightgold:#ead6ad;
+  --white:#f5f1e9;
+  --muted:#a6adba;
+  --line:rgba(201,167,106,.22);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',Arial,sans-serif;
 }
 
-* { box-sizing: border-box; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--sans);
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+::selection{background:var(--gold);color:#080e19}
 
-html { scroll-behavior: smooth; }
+/* PRELOADER */
 
-body {
-
-  margin: 0;
-
-  background: var(--bg);
-
-  color: var(--ivory);
-
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-
-  overflow-x: hidden;
-
+#loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#080e19;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  transition:opacity .8s ease,visibility .8s ease;
+}
+#loader.hide{opacity:0;visibility:hidden}
+.loader-logo{
+  font-family:var(--serif);
+  font-size:55px;
+  letter-spacing:12px;
+  color:var(--gold);
+}
+.loader-line{
+  width:140px;
+  height:1px;
+  background:#263246;
+  margin-top:22px;
+  overflow:hidden;
+}
+.loader-line:after{
+  content:"";
+  display:block;
+  width:100%;
+  height:100%;
+  background:var(--gold);
+  animation:loading 1.4s ease infinite;
+}
+@keyframes loading{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(100%)}
 }
 
-body.locked { overflow: hidden; }
+/* NAVIGATION */
 
-button, a { font: inherit; }
-
-.cover {
-
-  position: fixed;
-
-  inset: 0;
-
-  z-index: 10;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  text-align: center;
-
-  overflow: hidden;
-
-  background: #100e0b;
-
-  transition: opacity 1s ease, transform 1s ease, filter 1s ease;
-
-  cursor: pointer;
-
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+  padding:20px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:.4s;
+}
+header.scrolled{
+  background:rgba(8,14,25,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  padding-top:13px;
+  padding-bottom:13px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo-mark{
+  width:43px;
+  height:43px;
+}
+.brand-name{
+  font-family:var(--serif);
+  font-size:27px;
+  letter-spacing:5px;
+  color:var(--lightgold);
+}
+.brand-sub{
+  display:block;
+  font-size:8px;
+  letter-spacing:2px;
+  color:var(--muted);
+  margin-top:1px;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:32px;
+}
+.nav-links a{
+  font-size:10px;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  color:#c4cbd5;
+  transition:.3s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-contact{
+  border:1px solid var(--gold);
+  padding:12px 20px;
+  color:var(--gold)!important;
+}
+.menu-btn{
+  display:none;
+  background:none;
+  border:0;
+  color:var(--gold);
+  font-size:25px;
+  cursor:pointer;
 }
 
-.cover::before {
+/* HERO */
 
-  content: "";
-
-  position: absolute;
-
-  inset: -5%;
-
-  z-index: -2;
-
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:140px 9% 100px;
+  overflow:hidden;
   background:
-
-    linear-gradient(to bottom, #100e0b55, #100e0bd9),
-
-    url("aryans-theory-cover.png") center / cover no-repeat;
-
-  animation: slowZoom 18s ease-in-out infinite alternate;
-
+  radial-gradient(ellipse at 76% 48%,rgba(34,69,105,.32),transparent 42%),
+  linear-gradient(110deg,#080e19 10%,#0d192a 70%,#080e19);
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(8,14,25,.2),transparent 75%);
+}
+.hero-content{
+  position:relative;
+  z-index:3;
+  max-width:670px;
+}
+.eyebrow{
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.eyebrow:before{
+  content:"";
+  width:40px;
+  height:1px;
+  background:var(--gold);
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(65px,9vw,125px);
+  font-weight:400;
+  line-height:.88;
+  letter-spacing:-3px;
+  margin:35px 0 28px;
+}
+.hero h1 span{color:var(--gold);font-style:italic}
+.hero-description{
+  color:#b6c0ce;
+  font-size:14px;
+  line-height:2;
+  max-width:470px;
+  font-weight:300;
+}
+.hero-buttons{
+  display:flex;
+  gap:16px;
+  margin-top:38px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:16px 25px;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:.3s;
+  display:inline-flex;
+  align-items:center;
+  gap:15px;
+}
+.btn-primary{
+  background:var(--gold);
+  color:#101722;
+}
+.btn-primary:hover{
+  background:var(--lightgold);
+  transform:translateY(-3px);
+}
+.btn-outline{
+  border:1px solid var(--line);
+  color:var(--white);
+}
+.btn-outline:hover{
+  border-color:var(--gold);
+  color:var(--gold);
 }
 
-.cover::after {
+/* GLOBE */
 
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  z-index: -1;
-
-  background: radial-gradient(ellipse, transparent, #100e0b99);
-
-  pointer-events: none;
-
+.globe-stage{
+  position:absolute;
+  right:3%;
+  top:50%;
+  transform:translateY(-50%);
+  width:min(48vw,590px);
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1;
 }
-
-.cover-content {
-
-  width: min(90%, 480px);
-
-  padding: 30px 0 65px;
-
-  animation: appear 1.2s ease both;
-
-}
-
-.eyebrow {
-
-  color: var(--gold);
-
-  font-size: 10px;
-
-  letter-spacing: 4px;
-
-  text-transform: uppercase;
-
-  line-height: 1.8;
-
-}
-
-.rule {
-
-  width: 42px;
-
-  height: 1px;
-
-  margin: 24px auto;
-
-  background: var(--gold);
-
-}
-
-.cover h1 {
-
-  margin: 0;
-
-  font-family: Georgia, serif;
-
-  font-size: clamp(55px, 14vw, 88px);
-
-  font-weight: 400;
-
-  line-height: .9;
-
-  letter-spacing: -4px;
-
-}
-
-.cover h1 em {
-
-  display: block;
-
-  margin-top: 10px;
-
-  color: var(--gold);
-
-  font-weight: 400;
-
-}
-
-.subtitle {
-
-  margin: 26px auto;
-
-  max-width: 280px;
-
-  color: var(--muted);
-
-  font-family: Georgia, serif;
-
-  font-size: 18px;
-
-  line-height: 1.6;
-
-}
-
-.open-button {
-
-  min-height: 52px;
-
-  padding: 0 22px;
-
-  border: 1px solid var(--gold);
-
-  border-radius: 40px;
-
-  background: #100e0b99;
-
-  color: var(--ivory);
-
-  letter-spacing: 2px;
-
-  font-size: 11px;
-
-  text-transform: uppercase;
-
-  cursor: pointer;
-
-  animation: breathe 3s infinite;
-
-  transition: background .3s, transform .3s;
-
-}
-
-.open-button:hover {
-
-  background: #c7a66a22;
-
-  transform: translateY(-3px);
-
-}
-
-.cover-bottom {
-
-  position: absolute;
-
-  bottom: 28px;
-
-  left: 16px;
-
-  right: 16px;
-
-  color: var(--muted);
-
-  font-size: 10px;
-
-  letter-spacing: 2px;
-
-  line-height: 1.8;
-
-  text-transform: uppercase;
-
-}
-
-.cover.leaving {
-
-  opacity: 0;
-
-  transform: scale(1.05);
-
-  filter: blur(8px);
-
-  pointer-events: none;
-
-}
-
-.site {
-
-  opacity: 0;
-
-  visibility: hidden;
-
-  transform: translateY(24px);
-
-  filter: blur(5px);
-
-  transition: opacity 1s ease, transform 1s ease, filter 1s ease;
-
-}
-
-body.open .site {
-
-  opacity: 1;
-
-  visibility: visible;
-
-  transform: none;
-
-  filter: none;
-
-}
-
-header {
-
-  position: sticky;
-
-  top: 0;
-
-  z-index: 5;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 12px;
-
-  padding: 17px 6%;
-
-  border-bottom: 1px solid #c7a66a33;
-
-  background: #100e0bed;
-
-  backdrop-filter: blur(14px);
-
-}
-
-.brand {
-
-  color: var(--ivory);
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
-
-  text-decoration: none;
-
-  white-space: nowrap;
-
-}
-
-nav { display: flex; gap: 18px; }
-
-nav a {
-
-  color: var(--muted);
-
-  font-size: 11px;
-
-  text-decoration: none;
-
-}
-
-nav a:hover { color: var(--gold); }
-
-.hero {
-
-  min-height: 82vh;
-
-  display: flex;
-
-  align-items: center;
-
-  padding: 90px 9%;
-
+.globe{
+  position:relative;
+  width:75%;
+  aspect-ratio:1;
+  border-radius:50%;
   background:
-
-    linear-gradient(90deg, #100e0bf2, #100e0b88),
-
-    linear-gradient(0deg, #100e0b, transparent 60%),
-
-    url("aryans-theory-cover.png") center / cover no-repeat;
-
-  border-bottom: 1px solid #c7a66a33;
-
+  radial-gradient(circle at 32% 27%,rgba(111,153,185,.36),transparent 17%),
+  radial-gradient(circle at 65% 60%,rgba(35,85,123,.35),transparent 25%),
+  radial-gradient(circle at 35% 40%,#213f5b,#0d1b2c 60%,#050b13);
+  box-shadow:
+  inset -35px -20px 65px #03070d,
+  inset 8px 8px 35px rgba(180,205,225,.16),
+  0 0 90px rgba(53,111,160,.13);
+  animation:float 7s ease-in-out infinite;
+  overflow:hidden;
+}
+.globe:before,.globe:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:1px solid rgba(210,185,140,.22);
+}
+.globe:before{
+  transform:scaleX(.36);
+  border-left:1px solid rgba(201,167,106,.4);
+  border-right:1px solid rgba(201,167,106,.4);
+}
+.globe:after{
+  transform:scaleY(.36);
+  border-top:1px solid rgba(201,167,106,.4);
+  border-bottom:1px solid rgba(201,167,106,.4);
+}
+.globe-grid{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:repeating-linear-gradient(
+    0deg,transparent 0px,transparent 37px,
+    rgba(201,167,106,.12) 38px,transparent 39px
+  );
+  animation:rotateGrid 20s linear infinite;
+}
+.orbit{
+  position:absolute;
+  width:115%;
+  height:36%;
+  border:1px solid rgba(201,167,106,.5);
+  border-radius:50%;
+  transform:rotate(-25deg);
+}
+.orbit.two{
+  transform:rotate(58deg);
+  width:110%;
+  height:60%;
+  border-color:rgba(201,167,106,.22);
+}
+.orbit-dot{
+  position:absolute;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 20px var(--gold);
+  top:16%;left:75%;
+}
+.globe-caption{
+  position:absolute;
+  bottom:4%;
+  right:10%;
+  font-size:9px;
+  letter-spacing:3px;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-20px)}
+}
+@keyframes rotateGrid{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+.hero-bottom{
+  position:absolute;
+  bottom:30px;
+  left:9%;
+  right:9%;
+  display:flex;
+  justify-content:space-between;
+  color:#7e8998;
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  z-index:3;
 }
 
-.hero-inner {
+/* GENERAL */
 
-  max-width: 780px;
-
-  animation: appear 1s .2s both;
-
+section{position:relative}
+.section-wrap{
+  max-width:1250px;
+  margin:auto;
+  padding:120px 7%;
+}
+.section-label{
+  font-size:10px;
+  color:var(--gold);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(44px,6vw,78px);
+  line-height:.98;
+  font-weight:400;
+  letter-spacing:-1px;
+}
+.section-title em{color:var(--gold)}
+.section-intro{
+  max-width:580px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:2;
+  margin-top:24px;
+  font-weight:300;
+}
+.gold-rule{
+  width:65px;
+  height:1px;
+  background:var(--gold);
+  margin:30px 0;
+}
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:opacity .9s ease,transform .9s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.hero h2, .section h2 {
+/* ABOUT */
 
-  margin: 18px 0;
-
-  font-family: Georgia, serif;
-
-  font-size: clamp(45px, 8vw, 100px);
-
-  font-weight: 400;
-
-  line-height: 1;
-
-  letter-spacing: -3px;
-
+.about{
+  background:#0c1523;
+  overflow:hidden;
+}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:90px;
+  align-items:center;
+}
+.about-visual{
+  min-height:470px;
+  position:relative;
+  background:
+  radial-gradient(circle at 50% 45%,rgba(201,167,106,.15),transparent 50%),
+  linear-gradient(145deg,#16263b,#09111e);
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.about-visual:before{
+  content:"A";
+  font-family:var(--serif);
+  font-size:300px;
+  color:rgba(201,167,106,.12);
+  position:absolute;
+}
+.about-visual-inner{
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+.about-visual-inner svg{width:120px;height:120px}
+.about-visual-inner p{
+  color:var(--gold);
+  letter-spacing:5px;
+  font-size:10px;
+  margin-top:25px;
+}
+.about-note{
+  position:absolute;
+  bottom:25px;
+  left:25px;
+  font-size:9px;
+  letter-spacing:2px;
+  color:#9ba7b7;
 }
 
-.hero h2 em, .section h2 em { color: var(--gold); }
+/* SERVICES */
 
-.hero p:not(.eyebrow), .copy p, .section-intro {
-
-  max-width: 560px;
-
-  color: var(--muted);
-
-  font-size: 15px;
-
-  line-height: 1.9;
-
+.services{
+  background:#080e19;
+}
+.services-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:35px;
+  margin-bottom:60px;
+}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.service-card{
+  padding:42px 34px;
+  min-height:275px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  transition:.4s;
+  background:rgba(255,255,255,.008);
+}
+.service-card:hover{
+  background:linear-gradient(145deg,rgba(201,167,106,.12),transparent);
+  transform:translateY(-5px);
+}
+.service-number{
+  font-family:var(--serif);
+  font-size:23px;
+  color:var(--gold);
+}
+.service-card h3{
+  font-family:var(--serif);
+  font-size:31px;
+  font-weight:500;
+  margin:35px 0 15px;
+}
+.service-card p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.9;
+  font-weight:300;
 }
 
-.text-link {
+/* FOUNDERS */
 
-  display: inline-block;
-
-  margin-top: 20px;
-
-  padding-bottom: 8px;
-
-  border-bottom: 1px solid var(--gold);
-
-  color: var(--ivory);
-
-  font-size: 11px;
-
-  letter-spacing: 2px;
-
-  text-decoration: none;
-
-  text-transform: uppercase;
-
+.founders{
+  background:
+  radial-gradient(ellipse at 80% 30%,rgba(37,61,87,.25),transparent 45%),
+  #0c1523;
+}
+.founders-heading{text-align:center;margin-bottom:65px}
+.founders-heading .section-intro{margin-left:auto;margin-right:auto}
+.founders-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+.founder-card{
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.008));
+  padding:42px;
+  position:relative;
+  overflow:hidden;
+  transition:.4s;
+}
+.founder-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(201,167,106,.6);
+}
+.founder-card:after{
+  content:"";
+  position:absolute;
+  right:-50px;
+  top:-80px;
+  width:230px;
+  height:230px;
+  border:1px solid rgba(201,167,106,.12);
+  border-radius:50%;
+  box-shadow:0 0 0 25px rgba(201,167,106,.025),0 0 0 50px rgba(201,167,106,.02);
+}
+.founder-role{
+  color:var(--gold);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.founder-initial{
+  width:85px;
+  height:85px;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--serif);
+  font-size:43px;
+  color:var(--gold);
+  margin:35px 0;
+}
+.founder-card h3{
+  font-family:var(--serif);
+  font-size:46px;
+  font-weight:400;
+}
+.founder-position{
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin:8px 0 22px;
+}
+.founder-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:2;
+  font-weight:300;
+  max-width:430px;
+}
+.founder-tag{
+  display:inline-block;
+  border:1px solid var(--line);
+  color:#c8b58e;
+  padding:10px 14px;
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-top:28px;
 }
 
-.section {
+/* LEGACY */
 
-  padding: 90px 9%;
-
-  border-bottom: 1px solid #c7a66a22;
-
+.legacy{
+  background:#080e19;
+}
+.legacy-box{
+  border:1px solid var(--line);
+  padding:75px 8%;
+  text-align:center;
+  background:
+  radial-gradient(ellipse at center,rgba(201,167,106,.09),transparent 65%),
+  #0c1523;
+}
+.legacy-box .section-title{max-width:800px;margin:auto}
+.legacy-box .section-intro{margin:25px auto 0}
+.legacy-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:65px;
+}
+.stat strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:55px;
+  color:var(--gold);
+  font-weight:400;
+}
+.stat span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:8px;
 }
 
-.section h2 { font-size: clamp(42px, 6vw, 72px); }
+/* PHILOSOPHY */
 
-.story-grid {
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 50px;
-
-  align-items: start;
-
+.philosophy{
+  background:#0c1523;
+}
+.philosophy-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+.quote{
+  font-family:var(--serif);
+  font-size:clamp(35px,5vw,61px);
+  line-height:1.08;
+  color:var(--white);
+}
+.quote em{color:var(--gold)}
+.quote-author{
+  margin-top:30px;
+  font-size:9px;
+  letter-spacing:3px;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+.principles{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.principle{
+  padding:24px 0;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  gap:22px;
+}
+.principle span{
+  color:var(--gold);
+  font-family:var(--serif);
+  font-size:22px;
+}
+.principle h4{
+  font-family:var(--serif);
+  font-size:25px;
+  font-weight:500;
+  margin-bottom:5px;
+}
+.principle p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
 }
 
-.copy p:first-child { margin-top: 0; }
+/* CONTACT */
 
-.stat {
-
-  margin-top: 35px;
-
-  padding: 25px;
-
-  border: 1px solid #c7a66a44;
-
-  background: #c7a66a0b;
-
+.contact{
+  background:
+  radial-gradient(ellipse at center,rgba(41,72,105,.22),transparent 60%),
+  #080e19;
+  text-align:center;
+}
+.contact .section-intro{margin:25px auto 35px}
+.contact .hero-buttons{justify-content:center}
+.contact-brand{
+  font-family:var(--serif);
+  font-size:clamp(65px,12vw,145px);
+  color:rgba(201,167,106,.1);
+  letter-spacing:12px;
+  line-height:1;
+  margin-bottom:-25px;
 }
 
-.stat strong {
+/* FOOTER */
 
-  display: block;
-
-  color: var(--gold);
-
-  font-family: Georgia, serif;
-
-  font-size: 70px;
-
-  font-weight: 400;
-
+footer{
+  padding:35px 7%;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+  background:#060b13;
 }
-
-.stat p {
-
-  margin-bottom: 0;
-
-  color: var(--muted);
-
-  line-height: 1.7;
-
+footer p{
+  font-size:10px;
+  color:#8993a2;
+  letter-spacing:1px;
 }
+footer span{color:var(--gold)}
 
-.principles {
+/* RESPONSIVE */
 
-  background: #17140f;
-
+@media(max-width:900px){
+  .globe-stage{right:-12%;opacity:.45;width:65vw}
+  .hero-content{max-width:600px}
+  .about-grid,.philosophy-grid{gap:40px}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-.grid {
-
-  display: grid;
-
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  gap: 14px;
-
-  margin-top: 35px;
-
-}
-
-.card {
-
-  padding: 27px;
-
-  border: 1px solid #c7a66a33;
-
-  background: #100e0b55;
-
-  transition: transform .3s, border-color .3s;
-
-}
-
-.card:hover {
-
-  transform: translateY(-5px);
-
-  border-color: var(--gold);
-
-}
-
-.card small {
-
-  color: var(--gold);
-
-  letter-spacing: 2px;
-
-}
-
-.card h3 {
-
-  font-family: Georgia, serif;
-
-  font-size: 25px;
-
-  font-weight: 400;
-
-}
-
-.card p {
-
-  color: var(--muted);
-
-  font-size: 14px;
-
-  line-height: 1.8;
-
-}
-
-.chapters {
-
-  display: grid;
-
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  gap: 14px;
-
-  margin-top: 35px;
-
-}
-
-.quote {
-
-  padding: 100px 22px;
-
-  text-align: center;
-
-  background: radial-gradient(ellipse, #c7a66a15, transparent 70%);
-
-}
-
-.quote blockquote {
-
-  max-width: 800px;
-
-  margin: 25px auto;
-
-  font-family: Georgia, serif;
-
-  font-size: clamp(36px, 6vw, 68px);
-
-  line-height: 1.15;
-
-  letter-spacing: -2px;
-
-}
-
-.quote em { color: var(--gold); }
-
-.quote p { color: var(--muted); line-height: 1.8; }
-
-footer {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  gap: 16px;
-
-  padding: 25px 6%;
-
-  border-top: 1px solid #c7a66a33;
-
-  color: var(--muted);
-
-  font-size: 10px;
-
-  letter-spacing: 1px;
-
-  line-height: 1.8;
-
-}
-
-.reveal {
-
-  opacity: 0;
-
-  transform: translateY(22px);
-
-  transition: opacity .8s ease, transform .8s ease;
-
-}
-
-.reveal.visible {
-
-  opacity: 1;
-
-  transform: none;
-
-}
-
-@keyframes slowZoom {
-
-  from { transform: scale(1.02); }
-
-  to { transform: scale(1.12); }
-
-}
-
-@keyframes appear {
-
-  from { opacity: 0; transform: translateY(18px); }
-
-  to { opacity: 1; transform: none; }
-
-}
-
-@keyframes breathe {
-
-  0%, 100% { box-shadow: 0 0 0 0 #c7a66a00; }
-
-  50% { box-shadow: 0 0 0 7px #c7a66a12; }
-
-}
-
-@media (max-width: 650px) {
-
-  header { padding: 15px 18px; }
-
-  nav { gap: 12px; }
-
-  nav a { font-size: 10px; }
-
-  nav a:last-child { display: none; }
-
-  .hero { min-height: 78svh; padding: 75px 23px; }
-
-  .hero h2 { font-size: clamp(46px, 13vw, 66px); }
-
-  .section { padding: 70px 22px; }
-
-  .story-grid { grid-template-columns: 1fr; gap: 20px; }
-
-  .grid { grid-template-columns: 1fr; }
-
-  .chapters { grid-template-columns: 1fr; }
-
-  .card { padding: 23px; }
-
-  footer { flex-direction: column; }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  *, *::before, *::after {
-
-    animation-duration: .01ms !important;
-
-    transition-duration: .01ms !important;
-
-    scroll-behavior: auto !important;
-
+@media(max-width:700px){
+  header{padding:16px 6%}
+  .brand-name{font-size:23px}
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    padding:25px 7%;
+    background:#0b1421;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:24px;
+    border-bottom:1px solid var(--line);
   }
-
-  .reveal { opacity: 1; transform: none; }
-
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .hero{padding:145px 7% 130px;min-height:100svh}
+  .hero h1{font-size:clamp(65px,16vw,100px)}
+  .hero-content{max-width:100%}
+  .hero-description{max-width:340px}
+  .globe-stage{
+    width:85vw;
+    right:-35%;
+    opacity:.25;
+  }
+  .hero-bottom{left:7%;right:7%;font-size:8px}
+  .section-wrap{padding:85px 7%}
+  .about-grid,.philosophy-grid{grid-template-columns:1fr}
+  .about-visual{min-height:320px;order:2}
+  .services-heading{display:block}
+  .services-grid{grid-template-columns:1fr}
+  .service-card{min-height:220px}
+  .founders-grid{grid-template-columns:1fr}
+  .founder-card{padding:30px}
+  .founder-card h3{font-size:39px}
+  .legacy-box{padding:55px 7%}
+  .legacy-stats{grid-template-columns:1fr;gap:35px}
+  .stat strong{font-size:45px}
+  .contact-brand{letter-spacing:4px}
+  footer{justify-content:center;text-align:center;flex-direction:column}
 }
-
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
 </style>
-
 </head>
 
-<body class="locked">
+<body>
 
-<section class="cover" id="cover" aria-label="Open Aryan's Theory">
+<!-- LOADER -->
 
-  <div class="cover-content">
+<div id="loader">
+  <div class="loader-logo">ALEXIM</div>
+  <div class="loader-line"></div>
+</div>
 
-    <p class="eyebrow">Aryan Nanda · Global Trade </p>
+<!-- NAVIGATION -->
 
-    <div class="rule"></div>
+<header id="header">
+  <a href="#home" class="brand">
+    <svg class="logo-mark" viewBox="0 0 100 100" fill="none" aria-label="ALEXIM logo">
+      <path d="M50 7L91 83H9L50 7Z" stroke="#c9a76a" stroke-width="2"/>
+      <path d="M50 27L78 76H22L50 27Z" stroke="#c9a76a" stroke-width="1" opacity=".5"/>
+      <path d="M35 68L50 39L65 68M41 57H59" stroke="#ead6ad" stroke-width="3" stroke-linecap="round"/>
+      <path d="M7 91H93" stroke="#c9a76a" stroke-width="2"/>
+    </svg>
+    <div>
+      <div class="brand-name">ALEXIM</div>
+      <span class="brand-sub">ARYAN LOGISTICS EXPORT IMPORT</span>
+    </div>
+  </a>
 
-    <h1>ARYAN'S <em>THEORY</em></h1>
+  <nav class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Our Expertise</a>
+    <a href="#founders">Founders</a>
+    <a href="#legacy">Our Legacy</a>
+    <a href="#contact" class="nav-contact">Contact Us</a>
+  </nav>
 
-    <p class="subtitle">A journey into the world of global trade.</p>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+</header>
 
-    <button class="open-button" id="openButton" type="button">
+<!-- HERO -->
 
-      ↗ &nbsp; Open the Journal &nbsp; ↗
+<section class="hero" id="home">
 
-    </button>
+  <div class="hero-content reveal">
+    <div class="eyebrow">Beyond Borders. Beyond Business.</div>
 
+    <h1>
+      Trade<br>
+      Without<br>
+      <span>Limits.</span>
+    </h1>
+
+    <p class="hero-description">
+      Connecting opportunities across borders through experience,
+      knowledge and a vision for global commerce.
+      Discover a new perspective on international trade with ALEXIM.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#about" class="btn btn-primary">Discover ALEXIM <span>↗</span></a>
+      <a href="#founders" class="btn btn-outline">Meet Our Founders</a>
+    </div>
   </div>
 
-  <div class="cover-bottom">
-
-    Experience passed down. Knowledge built forward.
-
+  <div class="globe-stage">
+    <div class="globe">
+      <div class="globe-grid"></div>
+    </div>
+    <div class="orbit"><div class="orbit-dot"></div></div>
+    <div class="orbit two"></div>
+    <div class="globe-caption">One World · Endless Opportunities</div>
   </div>
 
+  <div class="hero-bottom">
+    <span>Mumbai, India</span>
+    <span>Global Vision · Trusted Experience</span>
+    <span>Scroll to Explore ↓</span>
+  </div>
 </section>
 
-<div class="site" id="site" inert>
+<!-- ABOUT -->
 
-  <header>
+<section class="about" id="about">
+ <div class="section-wrap about-grid">
 
-    <a class="brand" href="#top">ARYAN NANDA</a>
+  <div class="about-visual reveal">
+    <div class="about-visual-inner">
+      <svg viewBox="0 0 150 150" fill="none">
+        <circle cx="75" cy="75" r="61" stroke="#c9a76a" stroke-width="1"/>
+        <ellipse cx="75" cy="75" rx="27" ry="61" stroke="#c9a76a" stroke-width="1"/>
+        <ellipse cx="75" cy="75" rx="61" ry="23" stroke="#c9a76a" stroke-width="1"/>
+        <path d="M17 75H133M75 14V136" stroke="#c9a76a" stroke-width="1"/>
+        <path d="M75 31L86 75L75 119L64 75L75 31Z" fill="#c9a76a" opacity=".5"/>
+      </svg>
+      <p>CONNECTING THE WORLD</p>
+    </div>
+    <div class="about-note">ALEXIM · INTERNATIONAL TRADE</div>
+  </div>
 
-    <nav aria-label="Main navigation">
+  <div class="reveal">
+    <div class="section-label">01 / Who We Are</div>
+    <h2 class="section-title">
+      A vision built<br>
+      on <em>experience.</em>
+    </h2>
+    <div class="gold-rule"></div>
+    <p class="section-intro">
+      ALEXIM stands for Aryan Logistics Export Import.
+      Built around a combination of real-world industry experience
+      and a new generation's ambition, our vision is to make
+      international trade more accessible, understandable and connected.
+      <br><br>
+      With roots in Mumbai and a global outlook, we believe that
+      every successful trade relationship begins with knowledge,
+      trust and the right approach.
+    </p>
+    <a href="#founders" class="btn btn-outline" style="margin-top:30px">
+      The People Behind ALEXIM ↗
+    </a>
+  </div>
 
-      <a href="#story">My Story</a>
+ </div>
+</section>
 
-      <a href="#principles">Principles</a>
+<!-- SERVICES -->
 
-      <a href="#journal">Journal</a>
+<section class="services" id="services">
+ <div class="section-wrap">
 
-    </nav>
+  <div class="services-heading reveal">
+    <div>
+      <div class="section-label">02 / What We Explore</div>
+      <h2 class="section-title">The world of<br><em>global trade.</em></h2>
+    </div>
+    <p class="section-intro">
+      International commerce involves many moving parts.
+      Explore the key areas that shape the journey of products
+      and businesses across borders.
+    </p>
+  </div>
 
-  </header>
+  <div class="services-grid">
 
-  <main id="top">
+    <div class="service-card reveal">
+      <div class="service-number">01</div>
+      <h3>Global Sourcing</h3>
+      <p>Understanding products, suppliers, sourcing opportunities
+      and the process of identifying the right business partners.</p>
+    </div>
 
-    <section class="hero">
+    <div class="service-card reveal">
+      <div class="service-number">02</div>
+      <h3>Import & Export</h3>
+      <p>Exploring the fundamentals of international trade,
+      cross-border transactions and market opportunities.</p>
+    </div>
 
-      <div class="hero-inner">
+    <div class="service-card reveal">
+      <div class="service-number">03</div>
+      <h3>Logistics</h3>
+      <p>Discovering the journey of goods through transportation,
+      shipping, freight and supply-chain coordination.</p>
+    </div>
 
-        <p class="eyebrow">A Magic Towards TRADE · Est. 2026</p>
+    <div class="service-card reveal">
+      <div class="service-number">04</div>
+      <h3>Global Markets</h3>
+      <p>Understanding international markets, trade relationships,
+      demand and opportunities across different regions.</p>
+    </div>
 
-        <h2>Every market has a story.<br><em>Every trade</em> has a theory.</h2>
+    <div class="service-card reveal">
+      <div class="service-number">05</div>
+      <h3>Trade Knowledge</h3>
+      <p>Learning about documentation, procedures, commercial
+      terms and the details behind international transactions.</p>
+    </div>
 
-        <p>
+    <div class="service-card reveal">
+      <div class="service-number">06</div>
+      <h3>Business Connections</h3>
+      <p>Building relationships through communication, credibility,
+      research and a long-term approach to international business.</p>
+    </div>
 
-          I'm Aryan Nanda. At 16, I'm beginning to explore IMPORT EXPORT business
+  </div>
+ </div>
+</section>
 
-          and global trade, learning from my father's 25 years of
+<!-- FOUNDERS -->
 
-          experience and building my own understanding one lesson at a time.
+<section class="founders" id="founders">
+ <div class="section-wrap">
 
-        </p>
+  <div class="founders-heading reveal">
+    <div class="section-label">03 / The Founders</div>
+    <h2 class="section-title">Two generations.<br><em>One vision.</em></h2>
+    <p class="section-intro">
+      ALEXIM brings together established industry experience
+      and a new generation's curiosity, creativity and ambition.
+    </p>
+  </div>
 
-        <a class="text-link" href="#story">Discover the story ↘</a>
+  <div class="founders-grid">
 
+    <article class="founder-card reveal">
+      <div class="founder-role">Co-Founder · New Generation</div>
+      <div class="founder-initial">A</div>
+      <h3>Aryan Nanda</h3>
+      <div class="founder-position">Founder of NANDABOI</div>
+      <p>
+        At 15, Aryan Nanda is a young influencer and entrepreneur
+        with a community of over 100,000 across YouTube, Instagram,
+        Facebook and Threads.
+        <br><br>
+        Having built NANDABOI through years of content creation,
+        Aryan brings a fresh perspective, digital understanding
+        and a passion for exploring the world of international trade.
+      </p>
+      <div class="founder-tag">Content Creator · Entrepreneur</div>
+    </article>
+
+    <article class="founder-card reveal">
+      <div class="founder-role">Co-Founder · Industry Experience</div>
+      <div class="founder-initial">S</div>
+      <h3>Suresh Nanda</h3>
+      <div class="founder-position">Founder of Aryan Logistics</div>
+      <p>
+        With over 25 years of real-world experience in the
+        import-export industry, Suresh Nanda brings extensive
+        practical knowledge and industry understanding.
+        <br><br>
+        As the founder of Aryan Logistics, a Mumbai-based
+        EXIM company, he provides the experience and foundation
+        behind ALEXIM's vision.
+      </p>
+      <div class="founder-tag">25+ Years · EXIM Experience</div>
+    </article>
+
+  </div>
+ </div>
+</section>
+
+<!-- LEGACY -->
+
+<section class="legacy" id="legacy">
+ <div class="section-wrap">
+
+  <div class="legacy-box reveal">
+    <div class="section-label">04 / The Foundation</div>
+    <h2 class="section-title">
+      Experience that<br>
+      <em>shapes the vision.</em>
+    </h2>
+    <p class="section-intro">
+      ALEXIM's story is built on a foundation of industry knowledge,
+      digital experience and the belief that global opportunities
+      begin with understanding.
+    </p>
+
+    <div class="legacy-stats">
+      <div class="stat">
+        <strong>25+</strong>
+        <span>Years of EXIM Experience</span>
       </div>
-
-    </section>
-
-    <section class="section" id="story">
-
-      <div class="story-grid">
-
-        <div class="reveal">
-
-          <p class="eyebrow">Chapter 01 · The Beginning</p>
-
-          <h2>A legacy to learn from.<br><em>A future to build.</em></h2>
-
-          <div class="stat">
-
-            <strong>ARYAN LOGISTICS - since.2015</strong>
-
-            <p>Years of business experience to learn from — and a lifetime of questions still ahead.</p>
-
-          </div>
-
-        </div>
-
-        <div class="copy reveal">
-
-          <p>Every journey begins with curiosity. Mine begins by listening, observing, and asking better questions.</p>
-
-          <p>My father has spent <strong>25 years in DECODING IMPORT EXPORT THOERY </strong> — the patience behind a decision, the trust behind a partnership, and the discipline required to keep moving forward.</p>
-
-          <p>I'm fortunate to learn from that experience, while remembering that my own path is only just beginning.</p>
-
-          <p>I am Going To BREAK the EXIM THEORY , step-by-step for you.</p>
-
-        </div>
-
+      <div class="stat">
+        <strong>100K+</strong>
+        <span>Creator Community</span>
       </div>
-
-    </section>
-
-    <section class="section principles" id="principles">
-
-      <p class="eyebrow">Chapter 02 · The Mindset</p>
-
-      <h2>Learn with humility.<br><em>Think with intention.</em></h2>
-
-      <div class="grid">
-
-        <article class="card reveal">
-
-          <small>01 / CURIOSITY</small>
-
-          <h3>Ask why.</h3>
-
-          <p>Look beyond the price or headline. Understand the people, choices, and conditions behind it.</p>
-
-        </article>
-
-        <article class="card reveal">
-
-          <small>02 / PATIENCE</small>
-
-          <h3>Study the long game.</h3>
-
-          <p>Good judgement grows through time, careful observation, and learning from mistakes.</p>
-
-        </article>
-
-        <article class="card reveal">
-
-          <small>03 / INTEGRITY</small>
-
-          <h3>Build trust first.</h3>
-
-          <p>Reputation is earned through consistency, fairness, and keeping your word.</p>
-
-        </article>
-
+      <div class="stat">
+        <strong>2</strong>
+        <span>Generations · One Vision</span>
       </div>
+    </div>
+  </div>
 
-    </section>
+ </div>
+</section>
 
-    <section class="section" id="journal">
+<!-- PHILOSOPHY -->
 
-      <p class="eyebrow">Chapter 03 · The Field Notes</p>
+<section class="philosophy">
+ <div class="section-wrap philosophy-grid">
 
-      <h2>A world of ideas.<br><em>One lesson at a time.</em></h2>
+  <div class="reveal">
+    <div class="section-label">05 / Our Philosophy</div>
+    <div class="quote">
+      "The world doesn't end at borders.
+      <em>It begins beyond them.</em>"
+    </div>
+    <div class="quote-author">The ALEXIM Perspective</div>
+  </div>
 
-      <p class="section-intro">Six themes that will shape the questions I ask as I learn about business and global trade.</p>
+  <div class="principles reveal">
 
-      <div class="chapters">
-
-        <article class="card reveal">
-
-          <small>FIELD NOTE 01</small>
-
-          <h3>Markets & People</h3>
-
-          <p>How needs, culture, and human decisions influence what the world buys and sells.</p>
-
-        </article>
-
-        <article class="card reveal">
-
-          <small>FIELD NOTE 02</small>
-
-          <h3>The Art of Negotiation</h3>
-
-          <p>Listening carefully, finding shared value, and building agreements that last.</p>
-
-        </article>
-
-        <article class="card reveal">
-
-          <small>FIELD NOTE 03</small>
-
-          <h3>Global Connections</h3>
-
-          <p>How countries, suppliers, businesses, and customers depend on one another.</p>
-
-        </article>
-
-        <article class="card reveal">
-
-          <small>FIELD NOTE 04</small>
-
-          <h3>Risk & Judgement</h3>
-
-          <p>Thoughtful decisions, uncertainty, evidence, responsibility, and timing.</p>
-
-        </article>
-
-        <article class="card reveal">
-
-          <small>FIELD NOTE 05</small>
-
-          <h3>Trust & Reputation</h3>
-
-          <p>The quiet value of reliability, honest communication, and long-term relationships.</p>
-
-        </article>
-
-        <article class="card reveal">
-
-          <small>FIELD NOTE 06</small>
-
-          <h3>Lessons in Progress</h3>
-
-          <p>Keeping an open mind, recording what works, and learning from what doesn't.</p>
-
-        </article>
-
+    <div class="principle">
+      <span>01</span>
+      <div>
+        <h4>Experience</h4>
+        <p>Respecting the knowledge gained through real-world industry experience.</p>
       </div>
+    </div>
 
-    </section>
+    <div class="principle">
+      <span>02</span>
+      <div>
+        <h4>Integrity</h4>
+        <p>Building relationships through transparency, responsibility and trust.</p>
+      </div>
+    </div>
 
-    <section class="quote reveal">
+    <div class="principle">
+      <span>03</span>
+      <div>
+        <h4>Learning</h4>
+        <p>Staying curious, asking better questions and understanding the details.</p>
+      </div>
+    </div>
 
-      <p class="eyebrow">The Next Chapter</p>
+    <div class="principle">
+      <span>04</span>
+      <div>
+        <h4>Global Thinking</h4>
+        <p>Looking beyond geographical boundaries to understand opportunities.</p>
+      </div>
+    </div>
 
-      <blockquote>Experience shows the way.<br><em>Curiosity makes it your own.</em></blockquote>
+  </div>
+ </div>
+</section>
 
-      <p>A student's journal, inspired by experience and driven by questions.</p>
+<!-- CONTACT -->
 
-    </section>
+<section class="contact" id="contact">
+ <div class="section-wrap reveal">
 
-  </main>
+  <div class="contact-brand">ALEXIM</div>
+  <div class="section-label">06 / Start a Conversation</div>
 
-  <footer>
+  <h2 class="section-title">
+    Let's think<br><em>globally.</em>
+  </h2>
 
-    <span>© 2026 Aryan's Theory</span>
+  <p class="section-intro">
+    Every great business relationship starts with a conversation.
+    Connect with ALEXIM and explore the possibilities of global trade.
+  </p>
 
-    <span>Experience passed down · Knowledge built forward</span>
+  <div class="hero-buttons">
+    <!-- Replace the email below with your official business email -->
+    <a href="mailto:YOUR-EMAIL@example.com" class="btn btn-primary">
+      Get in Touch ↗
+    </a>
+    <a href="#home" class="btn btn-outline">
+      Back to Top ↑
+    </a>
+  </div>
 
-  </footer>
+ </div>
+</section>
 
-</div>
+<!-- FOOTER -->
+
+<footer>
+  <div class="brand">
+    <svg class="logo-mark" viewBox="0 0 100 100" fill="none">
+      <path d="M50 7L91 83H9L50 7Z" stroke="#c9a76a" stroke-width="2"/>
+      <path d="M35 68L50 39L65 68M41 57H59" stroke="#ead6ad" stroke-width="3"/>
+      <path d="M7 91H93" stroke="#c9a76a" stroke-width="2"/>
+    </svg>
+    <div>
+      <div class="brand-name">ALEXIM</div>
+      <span class="brand-sub">ARYAN LOGISTICS EXPORT IMPORT</span>
+    </div>
+  </div>
+
+  <p>© <span id="year"></span> ALEXIM. All Rights Reserved.</p>
+  <p>Beyond Borders. <span>Beyond Business.</span></p>
+</footer>
 
 <script>
 
-(() => {
+/* PRELOADER */
 
-  const cover = document.getElementById("cover");
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    document.getElementById("loader").classList.add("hide");
+  },900);
+});
 
-  const button = document.getElementById("openButton");
+/* NAVIGATION */
 
-  const site = document.getElementById("site");
+const header=document.getElementById("header");
 
-  let opened = false;
+window.addEventListener("scroll",()=>{
+  header.classList.toggle("scrolled",window.scrollY>50);
+});
 
-  const observer = new IntersectionObserver((entries) => {
+/* MOBILE MENU */
 
-    entries.forEach(entry => {
+const menuBtn=document.getElementById("menuBtn");
+const navLinks=document.getElementById("navLinks");
 
-      if (entry.isIntersecting) {
+menuBtn.addEventListener("click",()=>{
+  navLinks.classList.toggle("open");
+  menuBtn.textContent=navLinks.classList.contains("open")?"✕":"☰";
+});
 
-        entry.target.classList.add("visible");
-
-        observer.unobserve(entry.target);
-
-      }
-
-    });
-
-  }, { threshold: 0.12 });
-
-  function openJournal() {
-
-    if (opened) return;
-
-    opened = true;
-
-    button.disabled = true;
-
-    cover.classList.add("leaving");
-
-    document.body.classList.add("open");
-
-    site.removeAttribute("inert");
-
-    window.setTimeout(() => {
-
-      cover.remove();
-
-      document.body.classList.remove("locked");
-
-      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-    }, 1000);
-
-  }
-
-  button.addEventListener("click", (event) => {
-
-    event.stopPropagation();
-
-    openJournal();
-
+document.querySelectorAll(".nav-links a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    navLinks.classList.remove("open");
+    menuBtn.textContent="☰";
   });
+});
 
-  cover.addEventListener("click", openJournal);
+/* SCROLL ANIMATIONS */
 
-})();
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(element=>{
+  observer.observe(element);
+});
+
+/* FOOTER YEAR */
+
+document.getElementById("year").textContent=new Date().getFullYear();
 
 </script>
 
 </body>
-
 </html>

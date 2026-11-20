@@ -4,9 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ALEXIM | Aryan Logistics Export Import</title>
+<title>ALEXIM — Coming Soon</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="A new chapter in international trade. ALEXIM — Aryan Logistics Export Import.">
+
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,89 +23,240 @@
     box-sizing: border-box;
 }
 
-body {
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    font-family: 'Montserrat', sans-serif;
-    background: #06111e;
-    color: white;
+:root {
+    --gold: #c8ad79;
+    --gold-light: #e5d3aa;
+    --background: #080d14;
+    --white: #f4f1e9;
 }
 
-/* CINEMATIC BACKGROUND */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+/* BACKGROUND */
 
 .background {
     position: fixed;
     inset: 0;
+    z-index: -3;
 
     background:
-        linear-gradient(
-            90deg,
-            rgba(3,10,20,0.92),
-            rgba(3,10,20,0.55),
-            rgba(3,10,20,0.75)
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(41, 55, 70, 0.32),
+            transparent 65%
         ),
-        url("https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=85&w=2400");
-
-    background-size: cover;
-    background-position: center;
-    transform: scale(1.08);
-    animation: cinematicZoom 20s ease-in-out infinite alternate;
-    z-index: -2;
+        linear-gradient(
+            135deg,
+            #080d14,
+            #101a25,
+            #080d14
+        );
 }
 
-@keyframes cinematicZoom {
+/* GOLDEN LIGHT */
+
+.glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 48%;
+
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(
+        circle,
+        rgba(200, 173, 121, 0.09),
+        transparent 70%
+    );
+
+    filter: blur(30px);
+    animation: breathe 7s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+@keyframes breathe {
     from {
-        transform: scale(1.05);
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(0.8);
     }
 
     to {
-        transform: scale(1.18);
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
     }
 }
 
-/* DARK OVERLAY */
+/* FRAME */
 
-.overlay {
+.frame {
     position: fixed;
-    inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(2,8,17,.35),
-        rgba(2,8,17,.35),
-        rgba(2,8,17,.85)
-    );
-    z-index: -1;
+    inset: 22px;
+    border: 1px solid rgba(200, 173, 121, 0.18);
+    pointer-events: none;
 }
 
-/* GOLD LIGHT EFFECT */
+/* TOP LABEL */
 
-.gold-light {
+.top-label {
     position: absolute;
-    width: 450px;
-    height: 450px;
-    background: rgba(201,164,92,.10);
-    filter: blur(130px);
-    border-radius: 50%;
-    top: 25%;
+    top: 55px;
     left: 50%;
     transform: translateX(-50%);
+
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--gold);
+
+    white-space: nowrap;
+
+    animation: fadeDown 1.5s ease forwards;
 }
 
 /* MAIN CONTENT */
 
-.main {
-    height: 100vh;
+.container {
+    position: relative;
+    min-height: 100vh;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
     text-align: center;
-    padding: 20px;
-    animation: fadeIn 2s ease;
+    padding: 30px;
 }
 
-@keyframes fadeIn {
+/* LOGO */
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(75px, 13vw, 145px);
+    font-weight: 500;
+
+    letter-spacing: 13px;
+    color: var(--gold-light);
+
+    line-height: 1;
+
+    text-shadow:
+        0 0 35px rgba(200, 173, 121, 0.12);
+
+    animation: fadeUp 1.8s ease forwards;
+}
+
+/* LOGO LINE */
+
+.logo-line {
+    width: 65px;
+    height: 1px;
+
+    margin: 35px auto 27px;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--gold),
+        transparent
+    );
+
+    animation: expand 2s ease forwards;
+}
+
+/* COMPANY NAME */
+
+.company {
+    font-size: 10px;
+    font-weight: 400;
+
+    letter-spacing: 5px;
+    line-height: 2;
+
+    color: rgba(244, 241, 233, 0.72);
+
+    animation: fadeUp 2.1s ease forwards;
+}
+
+/* COMING SOON */
+
+.coming-soon {
+    margin-top: 75px;
+
+    font-size: 10px;
+    font-weight: 400;
+
+    letter-spacing: 7px;
+    color: var(--gold);
+
+    animation: fadeUp 2.5s ease forwards;
+}
+
+.coming-soon::before,
+.coming-soon::after {
+    content: "";
+    display: inline-block;
+
+    width: 24px;
+    height: 1px;
+
+    background: rgba(200, 173, 121, 0.5);
+
+    vertical-align: middle;
+    margin: 0 17px;
+}
+
+/* DESCRIPTION */
+
+.description {
+    margin-top: 19px;
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+
+    font-weight: 400;
+    letter-spacing: 1px;
+
+    color: rgba(244, 241, 233, 0.65);
+
+    animation: fadeUp 2.8s ease forwards;
+}
+
+/* FOOTER */
+
+.footer {
+    position: absolute;
+    bottom: 48px;
+
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    font-size: 8px;
+    letter-spacing: 3px;
+
+    color: rgba(244, 241, 233, 0.38);
+
+    animation: fadeUp 3s ease forwards;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp {
     from {
         opacity: 0;
         transform: translateY(25px);
@@ -110,124 +268,75 @@ body {
     }
 }
 
-/* TOP LABEL */
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -15px);
+    }
 
-.top-label {
-    font-size: 10px;
-    letter-spacing: 7px;
-    color: #d4b576;
-    margin-bottom: 35px;
-    text-transform: uppercase;
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 
-/* BRAND NAME */
+@keyframes expand {
+    from {
+        width: 0;
+        opacity: 0;
+    }
 
-.brand {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(65px, 12vw, 145px);
-    font-weight: 500;
-    letter-spacing: 18px;
-    color: #e5c78a;
-
-    text-shadow:
-        0 0 20px rgba(201,164,92,.2),
-        0 0 60px rgba(201,164,92,.15);
-}
-
-/* GOLD LINE */
-
-.line {
-    width: 100px;
-    height: 1px;
-    background: #c9a45c;
-    margin: 30px auto;
-    box-shadow: 0 0 15px #c9a45c;
-}
-
-/* COMPANY NAME */
-
-.company-name {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(13px, 2vw, 21px);
-    letter-spacing: 5px;
-    color: #f3eee4;
-    font-weight: 400;
-}
-
-/* TAGLINE */
-
-.tagline {
-    margin-top: 25px;
-    font-size: 10px;
-    letter-spacing: 5px;
-    color: #c5c0b5;
-    text-transform: uppercase;
-}
-
-/* BUTTON */
-
-.enter-btn {
-    margin-top: 65px;
-    padding: 19px 48px;
-
-    border: 1px solid #c9a45c;
-    background: rgba(201,164,92,.08);
-
-    color: #e5c78a;
-    text-decoration: none;
-
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-
-    transition: all .5s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.enter-btn:hover {
-    background: #c9a45c;
-    color: #06111e;
-    box-shadow: 0 0 35px rgba(201,164,92,.35);
-    transform: translateY(-4px);
-}
-
-/* FOOTER */
-
-.footer {
-    position: absolute;
-    bottom: 30px;
-    width: 100%;
-    text-align: center;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,.55);
+    to {
+        width: 65px;
+        opacity: 1;
+    }
 }
 
 /* MOBILE */
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
 
-    .brand {
-        letter-spacing: 9px;
-    }
-
-    .company-name {
-        letter-spacing: 2px;
-        line-height: 2;
+    .frame {
+        inset: 12px;
     }
 
     .top-label {
+        top: 42px;
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
+
+    .logo {
+        letter-spacing: 7px;
+    }
+
+    .company {
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
+
+    .coming-soon {
+        margin-top: 65px;
+        font-size: 9px;
         letter-spacing: 4px;
     }
 
-    .tagline {
+    .coming-soon::before,
+    .coming-soon::after {
+        width: 12px;
+        margin: 0 8px;
+    }
+
+    .description {
+        font-size: 18px;
+    }
+
+    .footer {
+        bottom: 35px;
+        font-size: 7px;
         letter-spacing: 2px;
     }
 
-    .enter-btn {
-        padding: 17px 35px;
-    }
 }
 
 </style>
@@ -236,38 +345,38 @@ body {
 <body>
 
 <div class="background"></div>
-<div class="overlay"></div>
-<div class="gold-light"></div>
+<div class="glow"></div>
+<div class="frame"></div>
 
-<main class="main">
+<div class="top-label">
+    AN INTERNATIONAL TRADE VENTURE
+</div>
 
-    <div class="top-label">
-        A New Vision of Global Trade
+<main class="container">
+
+    <div class="logo">
+        ALEXIM
     </div>
 
-    <h1 class="brand">
-        ALEXIM
-    </h1>
+    <div class="logo-line"></div>
 
-    <div class="line"></div>
-
-    <h2 class="company-name">
+    <div class="company">
         ARYAN LOGISTICS EXPORT IMPORT
-    </h2>
+    </div>
 
-    <p class="tagline">
-        Two Generations. One Vision
-    </p>
+    <div class="coming-soon">
+        COMING SOON
+    </div>
 
-    <a href="about.html" class="enter-btn">
-        CLICK HERE &nbsp; →
-    </a>
+    <div class="description">
+        A new chapter in global trade begins.
+    </div>
 
 </main>
 
-<div class="footer">
-    ESTABLISHED ON EXPERIENCE · BUILT FOR THE FUTURE
-</div>
+<footer class="footer">
+    GLOBAL TRADE &nbsp; · &nbsp; GLOBAL CONNECTIONS
+</footer>
 
 </body>
 </html>
